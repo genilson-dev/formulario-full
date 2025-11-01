@@ -55,8 +55,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// yarn prisma migrate dev\nmodel User {\n  id               String    @id @default(uuid())\n  name             String\n  email            String    @unique\n  password         String\n  resetToken       String? // Token para recuperação de senha\n  resetTokenExpiry DateTime? // Expiração do token\n  created_at       DateTime? @default(now())\n  updated_at       DateTime? @default(now())\n\n  @@map(\"users\")\n}\n",
-  "inlineSchemaHash": "368363addbdf431537e38d342bfbd4fbf9abc2ce002a9b60c6e5ab59a0627c41",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String    @id @default(uuid())\n  name             String\n  email            String    @unique\n  password         String\n  resetToken       String?\n  resetTokenExpiry DateTime?\n  created_at       DateTime? @default(now())\n  updated_at       DateTime? @default(now())\n\n  @@map(\"users\")\n}\n",
+  "inlineSchemaHash": "5519dc3ffd3bf52dfc68e54aad857565c34a2911ae4f8b08d125638975054f78",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
