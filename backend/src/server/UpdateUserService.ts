@@ -1,28 +1,31 @@
 import prismaClient from "../prisma";
 import { UserRequest } from "../interface/UserRequest";
 import { hash } from "bcryptjs";
-class UpdateUserServer {
+
+class UpdateUserService {
   async execute({ id, name, email, password }: UserRequest) {
     if (!id) {
-      throw new Error("ID do usuário não fornecido");
+      throw new Error("ID do usuário não fornecido.");
     }
 
-    const existingUser = await prismaClient.user.findUnique({
-      where: { id },
-    });
+    const userExists = await prismaClient.user.findUnique({ where: { id } });
 
-    if (!existingUser) {
-      throw new Error("Usuário não encontrado");
+    if (!userExists) {
+      throw new Error("Usuário não encontrado.");
     }
-    const passHash = await hash(password, 10)
 
-    const user = await prismaClient.user.update({
+    const updatedData: any = {
+      name,
+      email,
+    };
+
+    if (password) {
+      updatedData.password = await hash(password, 10);
+    }
+
+    const updatedUser = await prismaClient.user.update({
       where: { id },
-      data: {
-        name,
-        email,
-        password: passHash, // Incluído caso você queira atualizar a senha também
-      },
+      data: updatedData,
       select: {
         id: true,
         name: true,
@@ -32,8 +35,8 @@ class UpdateUserServer {
       },
     });
 
-    return user;
+    return updatedUser;
   }
 }
 
-export default UpdateUserServer;
+export default UpdateUserService;

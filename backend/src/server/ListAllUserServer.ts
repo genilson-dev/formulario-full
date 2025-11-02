@@ -9,6 +9,9 @@ export default class ListAllUserServicer{
                 email: true,
                 created_at: true,
                 updated_at: true
+            },
+            orderBy: {
+                created_at: "desc"
             }
         })
         return user;
