@@ -6,6 +6,7 @@ import UpdateUserController from "../controller/UpdateUserController";
 import DeleteUserController from "../controller/DeleteUserController";
 import AuthUserController from "../controller/LoginControlle";
 import { isAuthenticated } from "../middleware/authUserService";
+import { SearchUserByNameController} from "../controller/SearchUserController";
 
 const router = Router();
 
@@ -15,8 +16,10 @@ router.get("/teste", (req, res) => {
 
 router.post("/user", new CreateUserController().handleCreateUser)
 router.post("/login", new AuthUserController().handle)
-router.get("/user", isAuthenticated, new ListUsersController().handle)
-router.get("/user", isAuthenticated, new FindUserByIdController().handle)
+router.get("/user/all", isAuthenticated, new ListUsersController().handle)
+router.get("/user:id", isAuthenticated, new FindUserByIdController().handle)
+router.get("/search", isAuthenticated, new SearchUserByNameController().handle);
+
 router.put("/user", isAuthenticated, new UpdateUserController().handle)
 router.delete("/user", isAuthenticated, new DeleteUserController().handle);
 
