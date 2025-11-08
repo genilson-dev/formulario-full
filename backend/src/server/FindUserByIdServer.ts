@@ -7,7 +7,7 @@ class FindUserByIdService {
       throw new Error("ID do usuário não fornecido.");
     }
 
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findUnique({
       where: { id },
       select: {
         id: true,
@@ -18,9 +18,16 @@ class FindUserByIdService {
       },
     });
 
+    
+            if (id.length === 0) {
+                throw new Error("No User found for this db");
+            }
+
     if (!user) {
       throw new Error("Usuário não encontrado.");
     }
+    console.log("eu sou o aquivo server ",user);
+    
 
     return user;
   }
