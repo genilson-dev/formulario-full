@@ -1,4 +1,4 @@
-import prismaClient from "../prisma";
+import prismaDB from "../prisma";
 import { UserRequest } from "../interface/UserRequest";
 import { hash } from "bcryptjs";
 
@@ -8,7 +8,7 @@ class UpdateUserService {
       throw new Error("ID do usuário não fornecido.");
     }
 
-    const userExists = await prismaClient.user.findUnique({ where: { id } });
+    const userExists = await prismaDB.user.findUnique({ where: { id } });
 
     if (!userExists) {
       throw new Error("Usuário não encontrado.");
@@ -23,7 +23,7 @@ class UpdateUserService {
       updatedData.password = await hash(password, 10);
     }
 
-    const updatedUser = await prismaClient.user.update({
+    const updatedUser = await prismaDB.user.update({
       where: { id },
       data: updatedData,
       select: {

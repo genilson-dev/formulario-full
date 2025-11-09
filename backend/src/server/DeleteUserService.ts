@@ -1,4 +1,4 @@
-import prismaClient from "../prisma";
+import prismaDB from "../prisma";
 import { UserRequest } from "../interface/UserRequest";
 
 class DeleteUserService {
@@ -7,7 +7,7 @@ class DeleteUserService {
       throw new Error("ID do usuário não fornecido.");
     }
 
-    const userExists = await prismaClient.user.findUnique({
+    const userExists = await prismaDB.user.findUnique({
       where: { id },
     });
 
@@ -15,7 +15,7 @@ class DeleteUserService {
       throw new Error("Usuário não encontrado.");
     }
 
-    const deletedUser = await prismaClient.user.delete({
+    const deletedUser = await prismaDB.user.delete({
       where: { id },
       select: {
         id: true,

@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
 
-export function LoginUser() {
-  // Estados para controlar os campos e feedback
+function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [load, setLoad] = useState(false);
+
+  const navigate = useNavigate(); // Hook para redirecionar
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,8 +23,15 @@ export function LoginUser() {
       const data = await response.json();
 
       console.log(data);
+
       if (response.ok) {
+        // 🔑 Persistência no localStorage
+        localStorage.setItem("user", JSON.stringify(data));
+
         setMessage("Login realizado com sucesso ✅");
+
+        // 🚀 Redireciona para /home
+        navigate("/home");
       } else {
         setMessage(data.error || "Falha no login ❌");
       }
@@ -60,3 +69,5 @@ export function LoginUser() {
     </div>
   );
 }
+
+export default LoginUser

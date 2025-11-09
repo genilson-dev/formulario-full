@@ -7,6 +7,7 @@ import DeleteUserController from "../controller/DeleteUserController";
 import AuthUserController from "../controller/LoginControlle";
 import { isAuthenticated } from "../middleware/authUserService";
 import { SearchUserByNameController} from "../controller/SearchUserByNameController";
+import { RecoveryController } from "../controller/recoveryController";
 
 const router = Router();
 
@@ -22,5 +23,8 @@ router.get("/user/:nome", new SearchUserByNameController().handle);
 
 router.put("/user", isAuthenticated, new UpdateUserController().handle)
 router.delete("/user", isAuthenticated, new DeleteUserController().handle);
+
+router.post("/recupera-senha", RecoveryController.requestRecovery);
+router.post("/reset-senha", RecoveryController.resetPassword);
 
 export default router;

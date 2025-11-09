@@ -1,4 +1,4 @@
-import prismaClient from "../prisma";
+import prismaDB from "../prisma";
 
 class SearchUserByNameService {
   async execute({ name, email }: SearchRequest) {
@@ -6,15 +6,15 @@ class SearchUserByNameService {
       throw new Error("Nome ou email não fornecido.");
     }
 
-    const user = await prismaClient.user.findMany({
+    const user = await prismaDB.user.findMany({
       where: {
         name: {
           contains: name,
           mode: "insensitive", // busca sem diferenciar maiúsculas/minúsculas
         },
         email: {
-            contains: email,
-            mode: "insensitive"
+          contains: email,
+          mode: "insensitive"
         }
       },
     });
@@ -25,7 +25,7 @@ class SearchUserByNameService {
 
 export default SearchUserByNameService;
 
-// import prismaClient from "../prisma";
+// import prismaDB from "../prisma";
 
 // interface SearchRequest {
 //   name: string;
@@ -43,7 +43,7 @@ export default SearchUserByNameService;
 
 //     const skip = (page - 1) * limit;
 
-//     const users = await prismaClient.user.findMany({
+//     const users = await prismaDB.user.findMany({
 //       where: {
 //         name: {
 //           contains: name,

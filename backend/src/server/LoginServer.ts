@@ -1,12 +1,12 @@
 import { AutRequest } from "../interface/AutRequest";
-import prismaClient from "../prisma";
+import prismaDB from "../prisma";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
 class AuthUserService {
   async execute({ email, password }: AutRequest) {
     // Verifica se o e-mail existe
-    const user = await prismaClient.user.findUnique({
+    const user = await prismaDB.user.findUnique({
       where: { email },
     });
 

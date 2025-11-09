@@ -1,4 +1,4 @@
-import prismaClient from "../prisma";
+import prismaDB from "../prisma";
 import { UserRequest } from "../interface/UserRequest";
 import { hash } from "bcryptjs";
 
@@ -12,7 +12,7 @@ class CreateUserService {
       throw new Error("Nome e senha são obrigatórios.");
     }
 
-    const userAlreadyExists = await prismaClient.user.findUnique({
+    const userAlreadyExists = await prismaDB.user.findUnique({
       where: { email },
     });
 
@@ -22,7 +22,7 @@ class CreateUserService {
 
     const hashedPassword = await hash(password, 8);
 
-    const newUser = await prismaClient.user.create({
+    const newUser = await prismaDB.user.create({
       data: {
         name,
         email,

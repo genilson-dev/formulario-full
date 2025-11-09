@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function RecoveryUser(){
+function RecoveryUser(){
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("")
     const [load, setLoad] = useState(false)
@@ -49,3 +49,4 @@ export function RecoveryUser(){
   );
 }
 
+export default RecoveryUser
