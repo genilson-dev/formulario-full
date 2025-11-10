@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "..//styles/RecoveryPassword.css"; // importa o CSS separado
 
 function RecoveryPassword() {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ function RecoveryPassword() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Mostra a resposta do backend
+        console.log(data);
         setMessage(
           `Instruções de recuperação de senha enviadas para o email: ${email}`
         );
@@ -31,19 +32,21 @@ function RecoveryPassword() {
 
   return (
     <div className="form-container">
-      <h2>Recover password</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="form-title">Recuperar Senha</h2>
+      <form onSubmit={handleSubmit} className="recovery-form">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Informe o e-mail para recuperação"
+          required
+          className="form-input"
         />
-        <button type="submit" disabled={load}>
-          {load ? "Enviar..." : "Recuperar Senha"}
+        <button type="submit" disabled={load} className="form-button">
+          {load ? "Enviando..." : "Recuperar Senha"}
         </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="form-message">{message}</p>}
     </div>
   );
 }

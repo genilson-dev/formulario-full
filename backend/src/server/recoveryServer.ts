@@ -45,6 +45,7 @@ export class RecoveryService {
         password: hashedPassword,
         resetToken: null,
         resetTokenExpiry: null,
+        
       },
     });
   }

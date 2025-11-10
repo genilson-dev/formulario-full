@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
+import { useNavigate, Link } from "react-router-dom";
+import "../styles/LoginUser.css"; // importa o CSS separado
 
 function LoginUser() {
   const [email, setEmail] = useState("");
@@ -7,7 +8,7 @@ function LoginUser() {
   const [message, setMessage] = useState("");
   const [load, setLoad] = useState(false);
 
-  const navigate = useNavigate(); // Hook para redirecionar
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,16 +23,15 @@ function LoginUser() {
 
       const data = await response.json();
 
-      console.log(data);
-
       if (response.ok) {
-        // 🔑 Persistência no localStorage
         localStorage.setItem("user", JSON.stringify(data));
+
+        const userName = data.name || data.user?.name || "";
 
         setMessage("Login realizado com sucesso ✅");
 
-        // 🚀 Redireciona para /home
-        navigate("/home");
+        // 🚀 Redireciona para /home passando o nome
+        navigate("/home", { state: { userName } });
       } else {
         setMessage(data.error || "Falha no login ❌");
       }
@@ -45,14 +45,15 @@ function LoginUser() {
 
   return (
     <div className="form-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="form-title">Login</h2>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Informe seu e-mail"
           required
+          className="form-input"
         />
         <input
           type="password"
@@ -60,14 +61,23 @@ function LoginUser() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Informe sua senha"
           required
+          className="form-input"
         />
-        <button type="submit" disabled={load}>
+        <button type="submit" disabled={load} className="form-button">
           {load ? "Entrando..." : "Login"}
         </button>
       </form>
-      {message && <p>{message}</p>}
+
+      <div className="extra-links">
+        <p>Esqueceu sua senha?</p>
+        <Link to="/recupera-senha">
+          <button className="link-button">Recuperar Senha</button>
+        </Link>
+      </div>
+
+      {message && <p className="form-message">{message}</p>}
     </div>
   );
 }
 
-export default LoginUser
+export default LoginUser;

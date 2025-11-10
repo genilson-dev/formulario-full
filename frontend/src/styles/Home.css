@@ -1,0 +1,46 @@
+/* Barra superior azul clara */
+.navbar {
+  width: 100%;
+  background-color: #add8e6; /* azul claro */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Informações do usuário (nome + botão) */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: bold;
+}
+
+/* Botão de logout */
+.logout-btn {
+  padding: 5px 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Conteúdo central */
+.home-container {
+  text-align: center;
+  margin-top: 80px; /* espaço por causa da navbar fixa */
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
