@@ -17,6 +17,7 @@ model User {
   resetTokenExpiry DateTime?
   created_at       DateTime? @default(now())
   updated_at       DateTime? @default(now())
+  ativo            Boolean @default(true)
 
   @@map("users")
 }

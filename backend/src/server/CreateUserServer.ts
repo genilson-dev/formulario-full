@@ -27,6 +27,7 @@ class CreateUserService {
         name,
         email,
         password: hashedPassword,
+        ativo: true,
       },
       select: {
         id: true,

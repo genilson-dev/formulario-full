@@ -1,16 +1,24 @@
-import { Request, Response } from 'express';
-import ListAllUsersService from '../server/ListAllUserServer';
-
-export class ListUsersController {
-  async handle(req: Request, res: Response): Promise<Response> {
+import { Request, Response } from "express";
+// import prismaDB from "../prisma";
+import prismaDB from "../prisma";
+class ListAllUserController {
+  async handle(req: Request, res: Response) {
     try {
-      const listUsersService = new ListAllUsersService();
-      const users = await listUsersService.execute();
+      const users = await prismaDB.user.findMany({
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          created_at: true,
+          updated_at: true,
+        },
+      });
 
-      return res.status(200).json(users);
-    } catch (error: any) {
-      console.error('Erro ao listar usuários:', error.message);
-      return res.status(500).json({ error: 'Erro interno ao listar usuários.' });
+      return res.json(users); // ✅ retorna array direto
+    } catch (err: any) {
+      return res.status(500).json({ error: err.message });
     }
   }
 }
+
+export default ListAllUserController;

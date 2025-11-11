@@ -81,3 +81,58 @@ function LoginUser() {
 }
 
 export default LoginUser;
+
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// export default function Login() {
+//   const [email, setEmail] = useState("");
+//   const [senha, setSenha] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault(); // ✅ evita reload da página
+
+//     try {
+//       const res = await fetch("http://localhost:1000/login", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email, senha }), // ✅ nome igual ao backend
+//       });
+
+//       const data = await res.json();
+
+//       if (data.token) {
+//         localStorage.setItem("token", data.token); // salva só o JWT
+//         localStorage.setItem("user", JSON.stringify(data)); // salva dados do usuário
+//         navigate("/users"); // redireciona para listagem
+//       } else {
+//         alert("Login falhou: " + (data.error || "Verifique suas credenciais"));
+//       }
+//     } catch (err) {
+//       console.error("Erro no login:", err);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2>Login</h2>
+//       <form onSubmit={handleLogin}>
+//         <input
+//           type="email"
+//           placeholder="Digite seu email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)} // ✅ atualiza state
+//         />
+//         <input
+//           type="password"
+//           placeholder="Digite sua senha"
+//           value={senha}
+//           onChange={(e) => setSenha(e.target.value)} // ✅ atualiza state
+//         />
+//         <button type="submit">Entrar</button>
+//       </form>
+//     </div>
+//   );
+// }
+

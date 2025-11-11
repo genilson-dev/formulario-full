@@ -1,0 +1,120 @@
+/* Container principal */
+.form-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Título */
+.form-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+  color: #333;
+  text-align: center;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Labels opcionais (se usar) */
+label {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+}
+
+/* Placeholder */
+::placeholder {
+  color: #999;
+}
+
+/* Botão de salvar */
+button[type="submit"] {
+  margin-top: 8px;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.05s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* Mensagens de feedback (se usar) */
+.form-message {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Layout responsivo */
+@media (max-width: 520px) {
+  .form-container {
+    margin: 30px 16px;
+    padding: 22px;
+  }
+
+  .form-container h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Espaçamento entre campos (se quiser agrupar com wrappers) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Botão secundário (voltar) opcional */
+.button-secondary {
+  padding: 10px;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button-secondary:hover {
+  background: #5a6268;
+}
