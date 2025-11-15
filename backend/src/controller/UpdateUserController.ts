@@ -4,14 +4,14 @@ import UpdateUserService from "../server/UpdateUserService";
 class UpdateUserController {
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const { id, name, email, password } = req.body;
+      const { id, name, email, password, ativo } = req.body;
 
-      if (!id || !name || !email) {
-        return res.status(400).json({ error: "Campos obrigatórios ausentes." });
+      if (!id) {
+        return res.status(400).json({ error: "ID é obrigatório." });
       }
 
       const updateUser = new UpdateUserService();
-      const user = await updateUser.execute({ id, name, email, password });
+      const user = await updateUser.execute({ id, name, email, password, ativo });
 
       return res.status(200).json(user);
     } catch (error: any) {

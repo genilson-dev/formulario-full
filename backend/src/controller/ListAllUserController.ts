@@ -9,14 +9,19 @@ class ListAllUserController {
           id: true,
           name: true,
           email: true,
+          ativo:true,
           created_at: true,
           updated_at: true,
         },
+        orderBy:{
+          created_at: "desc"
+        }
       });
 
       return res.json(users); // ✅ retorna array direto
     } catch (err: any) {
-      return res.status(500).json({ error: err.message });
+      console.error("Erro ao listar usuários:", err.message);
+      return res.status(500).json({ error: "Erro interno ao listar usuários" });
     }
   }
 }

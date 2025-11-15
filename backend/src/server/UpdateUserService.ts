@@ -1,41 +1,33 @@
-import prismaDB from "../prisma";
-import { UserRequest } from "../interface/UserRequest";
-import { hash } from "bcryptjs";
+// src/server/UpdateUserService.ts
+import prisma from "../prisma";
+import bcrypt from "bcryptjs";
+
+interface UpdateUserDTO {
+  id: string;
+  name?: string;
+  email?: string;
+  password?: string;
+  ativo?: boolean;
+}
 
 class UpdateUserService {
-  async execute({ id, name, email, password }: UserRequest) {
-    if (!id) {
-      throw new Error("ID do usuário não fornecido.");
-    }
+  async execute({ id, name, email, password, ativo }: UpdateUserDTO) {
+    const data: any = {};
 
-    const userExists = await prismaDB.user.findUnique({ where: { id } });
-
-    if (!userExists) {
-      throw new Error("Usuário não encontrado.");
-    }
-
-    const updatedData: any = {
-      name,
-      email,
-    };
-
+    if (name) data.name = name;
+    if (email) data.email = email;
     if (password) {
-      updatedData.password = await hash(password, 10);
+      const hashSenha = await bcrypt.hash(password, 10);
+      data.password = hashSenha;
     }
+    if (ativo !== undefined) data.ativo = ativo;
 
-    const updatedUser = await prismaDB.user.update({
+    const user = await prisma.user.update({
       where: { id },
-      data: updatedData,
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        created_at: true,
-        updated_at: true,
-      },
+      data,
     });
 
-    return updatedUser;
+    return user;
   }
 }
 

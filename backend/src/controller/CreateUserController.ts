@@ -29,9 +29,9 @@ import prisma from "../prisma";
 
 class CreateUserController {
   async handleCreateUser(req: Request, res: Response) {
-    const { name, email, senha } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!name || !email || !senha) {
+    if (!name || !email || !password) {
       return res.status(400).json({ error: "Nome, email e senha são obrigatórios" });
     }
 
@@ -43,7 +43,7 @@ class CreateUserController {
       }
 
       // Criptografa a senha antes de salvar
-      const hashSenha = await bcrypt.hash(senha, 10);
+      const hashSenha = await bcrypt.hash(password, 10);
 
       const user = await prisma.user.create({
         data: {
@@ -57,6 +57,8 @@ class CreateUserController {
         id: user.id,
         name: user.name,
         email: user.email,
+        password: user.password,
+        ativo: user.ativo
       });
     } catch (err: any) {
       return res.status(500).json({ error: err.message });

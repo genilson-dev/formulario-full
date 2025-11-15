@@ -71,14 +71,47 @@ export default function Usuarios() {
     }
   };
 
+  // alternar ativo/inativo
+  const handleToggleAtivo = async (id, ativoAtual) => {
+    try {
+      const res = await fetch("http://localhost:1000/user/update", {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id, ativo: !ativoAtual }) // ✅ agora o backend entende
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Falha ao atualizar status");
+      }
+
+      // atualiza lista local
+      setUsuarios((prev) =>
+        prev.map((u) =>
+          u.id === id ? { ...u, ativo: !ativoAtual } : u
+        )
+      );
+
+      alert(`Usuário ${!ativoAtual ? "ativado" : "inativado"} com sucesso ✅`);
+    } catch (err) {
+      console.error("Erro ao atualizar status:", err);
+      alert("Não foi possível atualizar o status. Tente novamente.");
+    }
+  };
+
   return (
     <div className="usuarios-container">
       <h2>Lista de Usuários</h2>
-      <table>
+      <table bgcolor="#gray">
         <thead>
           <tr>
             <th>Nome</th>
             <th>Email</th>
+            <th>Ativo</th>
             <th>Criado em</th>
             <th>Atualizado em</th>
             <th>Ações</th>
@@ -90,17 +123,37 @@ export default function Usuarios() {
               <tr key={usuario.id}>
                 <td>{usuario.name || usuario.nome}</td>
                 <td>{usuario.email}</td>
+                <td>{usuario.ativo ? "Sim" : "Não"}</td>
                 <td>{new Date(usuario.created_at).toLocaleString()}</td>
                 <td>{new Date(usuario.updated_at).toLocaleString()}</td>
                 <td>
-                  <button className="action-button edit" onClick={() => handleEdit(usuario.id)}>Editar</button>
-                  <button className="action-button delete" onClick={() => handleDelete(usuario.id)}>Excluir</button>
+                  {/* ✅ Container flex para os botões */}
+                  <div className="actions">
+                    <button
+                      className="action-button toggle"
+                      onClick={() => handleToggleAtivo(usuario.id, usuario.ativo)}
+                    >
+                      {usuario.ativo ? "Inativar" : "Ativar"}
+                    </button>
+                    <button
+                      className="action-button edit"
+                      onClick={() => handleEdit(usuario.id)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="action-button delete"
+                      onClick={() => handleDelete(usuario.id)}
+                    >
+                      Excluir
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="no-users">Nenhum usuário encontrado</td>
+              <td colSpan="6" className="no-users">Nenhum usuário encontrado</td>
             </tr>
           )}
         </tbody>

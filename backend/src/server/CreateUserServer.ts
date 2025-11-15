@@ -3,7 +3,7 @@ import { UserRequest } from "../interface/UserRequest";
 import { hash } from "bcryptjs";
 
 class CreateUserService {
-  async execute({ name, email, password }: UserRequest) {
+  async execute({ name, email, password, ativo }: UserRequest) {
     if (!email || !email.includes("@")) {
       throw new Error(`E-mail inválido: ${email}`);
     }
@@ -20,19 +20,20 @@ class CreateUserService {
       throw new Error("Usuário já cadastrado.");
     }
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await hash(password, 10);
 
     const newUser = await prismaDB.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        ativo: true,
+        ativo: ativo !== undefined ? ativo : true, // ✅ usa o valor recebido ou true por padrão
       },
       select: {
         id: true,
         name: true,
         email: true,
+        ativo: true,
         created_at: true,
         updated_at: true,
       },

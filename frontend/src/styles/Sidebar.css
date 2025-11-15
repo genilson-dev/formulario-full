@@ -1,0 +1,50 @@
+.menu-btn {
+  font-size: 28px;
+  background: #282c34;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  /* posição fixa no canto superior esquerdo */
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000; /* garante que fique acima do menu */
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -220px; /* escondido inicialmente */
+  width: 200px;
+  height: 100%;
+  background: #282c34;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease;
+}
+
+.sidebar.open {
+  left: 0; /* aparece quando abre */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}

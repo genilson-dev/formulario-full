@@ -1,31 +1,86 @@
-.action-button {
-  padding: 6px 12px;
-  margin: 0 6px 0 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background 0.3s, transform 0.05s;
+/* Container das ações */
+td .actions {
+  display: flex;
+  gap: 8px; /* espaço entre os botões */
+  justify-content: flex-start; /* pode ser center ou space-between */
+  align-items: center;
 }
 
-.action-button:active {
-  transform: scale(0.98);
+/* Botões */
+.action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .action-button.edit {
-  background: #ffc107;
-  color: #fff;
+  background: #3b82f6;
+  color: white;
 }
 
 .action-button.edit:hover {
-  background: #e0a800;
+  background: #2563eb;
 }
 
 .action-button.delete {
-  background: #dc3545;
-  color: #fff;
+  background: #ef4444;
+  color: white;
 }
 
 .action-button.delete:hover {
-  background: #c82333;
+  background: #dc2626;
+}
+
+.action-button.toggle {
+  background: #10b981;
+  color: white;
+}
+
+.action-button.toggle:hover {
+  background: #059669;
+}
+.action-button.inactive {
+  background: #6b7280;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* junta as bordas */
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e5e7eb; /* ✅ borda externa da tabela */
+}
+
+thead {
+  background: #4f46e5;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #ddd; /* ✅ borda entre colunas do cabeçalho */
+}
+
+tbody td {
+  padding: 12px;
+  color: #444;
+  border: 1px solid #ddd; /* ✅ borda entre células */
+}
+
+tbody tr:hover {
+  background: #f3f4f6;
+}
+
+.no-users {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  border: none;
 }
