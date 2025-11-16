@@ -6,8 +6,8 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "resetToken" TEXT,
     "resetTokenExpiry" TIMESTAMP(3),
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_At" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );

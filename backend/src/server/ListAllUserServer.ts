@@ -7,11 +7,11 @@ export default class ListAllUserServicer {
                 id: true,
                 name: true,
                 email: true,
-                created_at: true,
-                updated_at: true
+                createdAt: true,
+                updatedAt: true
             },
             orderBy: {
-                created_at: "desc"
+                createdAt: "desc"
             }
         })
         return user;

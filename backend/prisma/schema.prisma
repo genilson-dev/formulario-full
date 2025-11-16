@@ -7,32 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id               String    @id @default(uuid())
-  name             String
-  email            String    @unique
-  password         String
+  id               String     @id @default(uuid()) @map("id")
+  name             String     @map("name")
+  email            String     @unique @map("email")
+  password         String     @map("password")
+  createdAt        DateTime?  @default(now())
+  ativo            Boolean    @default(true) @map("ativo")
   resetToken       String?
   resetTokenExpiry DateTime?
-  created_at       DateTime? @default(now())
-  updated_at       DateTime? @default(now())
-  ativo            Boolean @default(true)
-  questions        Question[]   // relação 1:N com Question
+  updatedAt        DateTime?  @default(now())
+  questions        Question[]
 
   @@map("users")
-
 }
 
 model Question {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  ativo       Boolean  @default(true)   // campo para ativar/inativar
+  id            String   @id @default(uuid()) @map("id")
+  title         String   @map("title")
+  description   String?  @map("description")
+  optionA       String   @map("option_a")
+  optionB       String   @map("option_b")
+  optionC       String   @map("option_c")
+  optionD       String   @map("option_d")
+  optionE       String   @map("option_e")
+  correctOption String   @map("correct_option")
+  createdAt     DateTime @default(now())
+  ativo         Boolean  @default(true) @map("ativo")
+  updatedAt     DateTime @updatedAt
+  userId        String   @map("userId")
+  user          User     @relation(fields: [userId], references: [id])
+  options       Option[]
 
   @@map("questions")
 }
+
+
+model Option {
+  id         String   @id @default(uuid()) @map("id")
+  letter     String   @map("letter")   // "A", "B", "C", "D", "E"
+  text       String   @map("text")
+  isCorrect  Boolean  @map("is_correct")
+  questionId String   @map("question_id")
+  question   Question @relation(fields: [questionId], references: [id])
+
+  @@map("options")
+}
+

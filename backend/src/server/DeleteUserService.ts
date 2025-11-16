@@ -21,8 +21,8 @@ class DeleteUserService {
         id: true,
         name: true,
         email: true,
-        created_at: true,
-        updated_at: true,
+        createdAt: true,
+        updated_At: true,
       },
     });
 

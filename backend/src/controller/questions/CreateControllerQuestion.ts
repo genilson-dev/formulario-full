@@ -8,15 +8,41 @@ class CreateQuestionController {
         return res.status(401).json({ error: "Usuário não autenticado." });
       }
 
-      const { title, description, ativo } = req.body;
+      // desestrutura todos os campos do body
+      const {
+        title,
+        description,
+        ativo,
+        optionA,
+        optionB,
+        optionC,
+        optionD,
+        optionE,
+        correctOption,
+      } = req.body;
+
       const userId = (req.user as any).id;
 
       const service = new CreateServiceQuestion();
-      const result = await service.execute({ title, description, userId, ativo });
+      const result = await service.execute({
+        id: req.body.id,
+        title: title,
+        description: description,
+        ativo: ativo,
+        userId: userId,
+        optionA: optionA,
+        optionB: optionB,
+        optionC: optionC,
+        optionD: optionD,
+        optionE: optionE,
+        correctOption: correctOption,
+      });
 
       return res.status(201).json(result);
     } catch (err: any) {
-      return res.status(400).json({ error: err.message || "Erro ao criar questão." });
+      return res
+        .status(400)
+        .json({ error: err.message || "Erro ao criar questão." });
     }
   }
 }

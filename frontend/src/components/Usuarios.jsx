@@ -124,8 +124,8 @@ export default function Usuarios() {
                 <td>{usuario.name || usuario.nome}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.ativo ? "Sim" : "Não"}</td>
-                <td>{new Date(usuario.created_at).toLocaleString()}</td>
-                <td>{new Date(usuario.updated_at).toLocaleString()}</td>
+                <td>{new Date(usuario.createdAt).toLocaleString()}</td>
+                <td>{new Date(usuario.updated_At).toLocaleString()}</td>
                 <td>
                   {/* ✅ Container flex para os botões */}
                   <div className="actions">

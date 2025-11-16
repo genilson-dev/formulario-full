@@ -1,7 +1,7 @@
 import prismaDB from "../../prisma";
 
 class ListServiceQuestions {
-    async execute(id: string){
+    async execute(id: string) {
         const questions = await prismaDB.question.findMany({
             where: { id },
             select: {
@@ -10,9 +10,9 @@ class ListServiceQuestions {
                 description: true,
                 ativo: true
             },
-            orderBy:{
+            orderBy: {
                 title: 'asc',
-                created_at: "desc" 
+                // createdAt: "desc"
             }
         })
         return questions;

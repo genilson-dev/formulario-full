@@ -9,12 +9,12 @@ class ListAllUserController {
           id: true,
           name: true,
           email: true,
-          ativo:true,
-          created_at: true,
-          updated_at: true,
+          ativo: true,
+          createdAt: true,
+          updatedAt: true,
         },
-        orderBy:{
-          created_at: "desc"
+        orderBy: {
+          createdAt: "desc"
         }
       });
 
