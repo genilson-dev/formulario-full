@@ -8,6 +8,7 @@ import AuthUserController from "../controller/LoginControlle";
 import isAuthenticated from "../middleware/authUserService";
 import { SearchUserByNameController} from "../controller/SearchUserByNameController";
 import { RecoveryController } from "../controller/recoveryController";
+import CreateQuestionController from "../controller/questions/CreateControllerQuestion";
 
 const router = Router();
 
@@ -26,5 +27,9 @@ router.delete("/user/delete", isAuthenticated, new DeleteUserController().handle
 
 router.post("/recupera-senha", RecoveryController.requestRecovery);
 router.post("/reset-senha", RecoveryController.resetPassword);
+
+
+// Questoes
+router.post("/create/question", isAuthenticated, new CreateQuestionController().handle)
 
 export default router;
