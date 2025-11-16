@@ -18,6 +18,21 @@ model User {
   created_at       DateTime? @default(now())
   updated_at       DateTime? @default(now())
   ativo            Boolean @default(true)
+  questions        Question[]   // relação 1:N com Question
 
   @@map("users")
+
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  ativo       Boolean  @default(true)   // campo para ativar/inativar
+
+  @@map("questions")
 }
