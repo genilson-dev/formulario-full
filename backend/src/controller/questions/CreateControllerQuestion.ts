@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateServiceQuestion from "../../server/questions/CreateServiceQuestion";
+
 class CreateQuestionController {
   async handle(req: Request, res: Response) {
     try {

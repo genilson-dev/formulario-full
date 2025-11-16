@@ -1,15 +1,7 @@
 // src/server/UpdateUserService.ts
 import prisma from "../prisma";
 import bcrypt from "bcryptjs";
-
-interface UpdateUserDTO {
-  id: string;
-  name?: string;
-  email?: string;
-  password?: string;
-  ativo?: boolean;
-}
-
+import { UpdateUserDTO } from "../interface/UpdateRequest";
 class UpdateUserService {
   async execute({ id, name, email, password, ativo }: UpdateUserDTO) {
     const data: any = {};
