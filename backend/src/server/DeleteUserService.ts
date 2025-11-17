@@ -1,32 +1,35 @@
+// src/server/DeleteUserService.ts
 import prismaDB from "../prisma";
-import { UserRequest } from "../interface/UserRequest";
 
 class DeleteUserService {
-  async execute({ id }: UserRequest) {
+  async execute(id: string) {
     if (!id) {
-      throw new Error("ID do usuário não fornecido.");
+      throw new Error("ID do usuário é obrigatório.");
     }
 
-    const userExists = await prismaDB.user.findUnique({
-      where: { id },
+    // Primeiro, apagar todas as questões relacionadas ao usuário
+    await prismaDB.question.deleteMany({
+      where: { userId: id },
     });
 
-    if (!userExists) {
-      throw new Error("Usuário não encontrado.");
+    // Agora pode apagar o usuário
+    try {
+      const deletedUser = await prismaDB.user.delete({
+        where: { id },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          ativo: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      });
+
+      return deletedUser;
+    } catch (error: any) {
+      throw new Error("Usuário não encontrado ou já excluído.");
     }
-
-    const deletedUser = await prismaDB.user.delete({
-      where: { id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        createdAt: true,
-        updated_At: true,
-      },
-    });
-
-    return deletedUser;
   }
 }
 

@@ -1,11 +1,11 @@
 import prismaDB from "../../prisma";
 
-class ListServiceQuestions {
+class ListQuestionByCategoryService {
   async execute(category?: string, page: number = 1, perPage: number = 5) {
     const skip = (page - 1) * perPage;
 
     const questions = await prismaDB.question.findMany({
-      where: category ? { category } : {}, // se categoria vier, filtra
+      where: category ? { category: category } : {},
       skip,
       take: perPage,
       select: {
@@ -21,7 +21,7 @@ class ListServiceQuestions {
     });
 
     const total = await prismaDB.question.count({
-      where: category ? { category } : {},
+      where: category ? { category: category } : {},
     });
 
     return {
@@ -37,4 +37,4 @@ class ListServiceQuestions {
   }
 }
 
-export default ListServiceQuestions;
+export default ListQuestionByCategoryService;

@@ -6,9 +6,10 @@ class ListQuestionsController {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const perPage = parseInt(req.query.perPage as string) || 5;
+      const category = req.query.category as string; // ex: "Matemática"
 
       const service = new ListServiceQuestions();
-      const result = await service.execute(page, perPage);
+      const result = await service.execute(category, page, perPage);
 
       return res.json(result);
     } catch (err: any) {

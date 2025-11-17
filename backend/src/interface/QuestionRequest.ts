@@ -3,6 +3,7 @@ export interface QuestionRequest {
   userId: string;
   title: string;
   description?: string;
+  category?: string;
   ativo?: boolean;
   optionA: string;
   optionB: string;

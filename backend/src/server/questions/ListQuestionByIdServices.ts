@@ -4,7 +4,7 @@ import { LisQuestionRequest } from '../../interface/ListUserRequest';
 class FindQuestionByIdService {
     async execute({ id }: LisQuestionRequest) {
         if (!id) {
-            throw new Error("O id nao fo encontrado.");
+            throw new Error("O id nao foi encontrado.");
         }
 
         const question = await prismaDB.question.findUnique({
@@ -13,7 +13,13 @@ class FindQuestionByIdService {
                 id: true,
                 title: true,
                 description: true,
-                userId: true,
+                category: true,
+                optionA: true,
+                optionB: true,
+                optionC: true,
+                optionD: true,
+                optionE: true,
+                correctOption: true,
                 ativo: true,
                 createdAt: true,
                 updatedAt: true,

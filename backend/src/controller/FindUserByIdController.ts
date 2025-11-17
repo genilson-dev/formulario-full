@@ -3,7 +3,7 @@ import FindUserByIdService from "../server/FindUserByIdServer";
 
 class FindUserByIdController {
   async handle(req: Request, res: Response) {
-    const { id } = req.params;
+    const { id } = req.body;
 
     if (!id) {
       return res.status(400).json({ error: "ID do usuário não fornecido" });
