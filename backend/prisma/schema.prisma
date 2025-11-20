@@ -116,23 +116,23 @@ model Option {
 // Novo modelo de membros GEM
 //
 model Membro {
-  id           String       @id @default(uuid()) @map("id")
-  nome         String       @map("nome")
-  inicioGem    DateTime     @map("inicio_gem")
-  status       Status       @map("status")
-  funcao       Funcao       @map("funcao")
-  congregacao  String       @map("congregacao")
-  batizado     Boolean      @map("batizado")
-  dataBatismo  DateTime?    @map("data_batismo")
-  instrumento  String       @map("instrumento")
-  tonalidade   String       @map("tonalidade")
-  estadoCivil  EstadoCivil  @map("estado_civil")
+  id           String       @id @default(uuid()) @map("id") // IDENTIFICADOR UNICO
+  name         String       @map("nome") // NOME DO MEMBRO
+  inicioGem    DateTime     @map("inicio_gem") // DATA DE INICIO NA GEM ou seja, quando começou as aulas de musica
+  status       Status       @map("status") // STATUS ATUAL DO MEMBRO
+  funcao       Funcao       @map("funcao") // MUSICO OU ORGANISTA
+  congregacao  String       @map("congregacao")// AONDE CONGREGA
+  batizado     Boolean      @map("batizado") // SE É BATIZADO
+  dataBatismo  DateTime?    @map("data_batismo") // DATA DE BATISMO
+  instrumento  String       @map("instrumento") // INSTRUMENTO QUE TOCA
+  tonalidade   String       @map("tonalidade") // TONALIDADE QUE TOCA do instrumento
+  estadoCivil  EstadoCivil  @map("estado_civil") // SOLTEIRO OU CASADO
 
   @@map("membros")
 }
 
 enum Status {
-  INICIANTE
+  ALUNO
   ENSAIOS
   REUNIOES_JOVENS
   CULTOS_OFICIAIS
