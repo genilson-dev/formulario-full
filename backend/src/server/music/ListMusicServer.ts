@@ -3,7 +3,7 @@ export default class ListAllMusicosServicer {
     async execute() {
         const music = await prismaDB.musica.findMany({
             where:{
-                ativo: true                
+                ativo: false                
             },            
             select: {
                 id: true,

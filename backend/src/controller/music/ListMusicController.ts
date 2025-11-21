@@ -5,7 +5,10 @@ import { prismaDB } from "../../prisma";
 class ListAllMusicController {
   async handle(req: Request, res: Response) {
     try {
-      const music = await prismaDB.musica.findMany({             
+      const music = await prismaDB.musica.findMany({   
+        // where: {
+        //     ativo: true
+        // },
         select: {
           id: true,
           name: true,
