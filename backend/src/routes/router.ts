@@ -46,6 +46,6 @@ router.get("/question/:id", isAuthenticated, new FindQuestionByIdController().ha
 router.get("/questions/category", isAuthenticated, new ListQuestionsByCategoryController().handle);
 
 // Musica
-router.post("/create/music", isAuthenticated, new CreateMusicController().handle);
+router.post("/create/music", isAuthenticated, new CreateMusicController().create);
 
 export default router;
