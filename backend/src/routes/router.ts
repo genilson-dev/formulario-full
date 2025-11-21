@@ -17,6 +17,7 @@ import CreateControllerQuestion from "../controller/questions/CreateControllerQu
 import ListQuestionsByCategoryController from "../controller/questions/ListQuestionByCategoryController";
 import DeleteUserController from "../controller/DeleteUserController";
 import CreateMusicController from "../controller/music/CreateMusicController";
+import ListMusicController from "../controller/music/ListMusicController";
 const router = Router();
 
 router.get("/teste", (req, res) => {
@@ -47,5 +48,5 @@ router.get("/questions/category", isAuthenticated, new ListQuestionsByCategoryCo
 
 // Musica
 router.post("/create/music", isAuthenticated, new CreateMusicController().create);
-
+router.get("/music/all", isAuthenticated, new ListMusicController().handle);
 export default router;

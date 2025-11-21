@@ -71,8 +71,14 @@ model Musica {
   tonalidade   String       @map("tonalidade")
   estadoCivil  EstadoCivil  @map("estado_civil")
 
+  ativo        Boolean      @default(true) @map("ativo")   // <-- CAMPO ADICIONADO
+
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
   @@map("musicas")
 }
+
 
 enum Status {
   ALUNO
