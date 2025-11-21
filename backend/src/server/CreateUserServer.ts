@@ -1,4 +1,4 @@
-import prismaDB from "../prisma";
+import {prismaDB} from "../prisma/index";
 import { UserRequest } from "../interface/UserRequest";
 import { hash } from "bcryptjs";
 
@@ -35,7 +35,7 @@ class CreateUserService {
         email: true,
         ativo: true,
         createdAt: true,
-        updated_At: true,
+        updatedAt: true,
       },
     });
 

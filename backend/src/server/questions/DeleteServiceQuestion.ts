@@ -1,4 +1,4 @@
-import prismaDB from "../../prisma";
+import {prismaDB} from "../../prisma";
 
 class DeleteQuestionService {
   async execute(id: string) {

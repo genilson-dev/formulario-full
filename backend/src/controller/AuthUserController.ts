@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { sign } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import prisma from "../prisma";
+import {prismaDB} from "../prisma";
 
 class AuthUserController {
   async handle(req: Request, res: Response) {
@@ -13,7 +13,7 @@ class AuthUserController {
 
     try {
       // 1. Buscar usuário
-      const user = await prisma.user.findUnique({ where: { email } });
+      const user = await prismaDB.user.findUnique({ where: { email } });
       if (!user) {
         return res.status(401).json({ error: "Usuário não encontrado" });
       }

@@ -1,4 +1,4 @@
-import prismaDB from '../../prisma';
+import {prismaDB} from '../../prisma';
 import { LisQuestionRequest } from '../../interface/ListUserRequest';
 
 class FindQuestionByIdService {

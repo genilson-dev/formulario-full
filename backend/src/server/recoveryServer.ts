@@ -1,4 +1,4 @@
-import prismaDB from "../prisma";
+import {prismaDB} from "../prisma";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 
@@ -45,7 +45,7 @@ export class RecoveryService {
         password: hashedPassword,
         resetToken: null,
         resetTokenExpiry: null,
-        
+
       },
     });
   }

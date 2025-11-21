@@ -1,5 +1,5 @@
 // src/server/UpdateUserService.ts
-import prisma from "../prisma";
+import {prismaDB} from "../prisma/index";
 import bcrypt from "bcryptjs";
 import { UpdateUserDTO } from "../interface/UpdateRequest";
 
@@ -25,7 +25,7 @@ class UpdateUserService {
     if (ativo !== undefined) data.ativo = ativo;
 
     try {
-      const user = await prisma.user.update({
+      const user = await prismaDB.user.update({
         where: { id },
         data,
         select: {

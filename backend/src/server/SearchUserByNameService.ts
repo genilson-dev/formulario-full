@@ -1,4 +1,4 @@
-import prismaDB from "../prisma";
+import {prismaDB} from "../prisma";
 
 class SearchUserByNameService {
   async execute({ name, email }: SearchRequest) {
@@ -25,44 +25,3 @@ class SearchUserByNameService {
 
 export default SearchUserByNameService;
 
-// import prismaDB from "../prisma";
-
-// interface SearchRequest {
-//   name: string;
-//   email: string;
-//   page?: number;       // página atual
-//   limit?: number;      // quantos resultados por página
-//   orderBy?: "asc" | "desc"; // ordenação alfabética
-// }
-
-// class SearchUserByNameService {
-//   async execute({ name, email, page = 1, limit = 10, orderBy = "asc" }: SearchRequest) {
-//     if (!name || !email) {
-//       throw new Error("Nome e email são obrigatórios.");
-//     }
-
-//     const skip = (page - 1) * limit;
-
-//     const users = await prismaDB.user.findMany({
-//       where: {
-//         name: {
-//           contains: name,
-//           mode: "insensitive",
-//         },
-//         email: {
-//           contains: email,
-//           mode: "insensitive",
-//         },
-//       },
-//       orderBy: {
-//         name: orderBy,
-//       },
-//       skip,
-//       take: limit,
-//     });
-
-//     return users;
-//   }
-// }
-
-// export default SearchUserByNameService;

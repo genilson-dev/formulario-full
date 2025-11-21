@@ -16,13 +16,14 @@ import FindQuestionByIdController from "../controller/questions/ListQuestionById
 import CreateControllerQuestion from "../controller/questions/CreateControllerQuestion";
 import ListQuestionsByCategoryController from "../controller/questions/ListQuestionByCategoryController";
 import DeleteUserController from "../controller/DeleteUserController";
+import CreateMusicController from "../controller/music/CreateMusicController";
 const router = Router();
 
 router.get("/teste", (req, res) => {
     return res.send("A rota teste esta funcionando com sucesso")
 })
 
-router.post("/user", new CreateUserController().handleCreateUser)
+router.post("/user/create", new CreateUserController().handleCreateUser)
 router.post("/login", new AuthUserController().handle)
 router.get("/user/all", isAuthenticated, new ListUsersController().handle)
 router.get("/list/user/:id", new FindUserByIdController().handle)
@@ -43,4 +44,8 @@ router.put("/update/question/:id", isAuthenticated, new UpdateQuestionController
 router.delete("/delete/question/:id", isAuthenticated, new DeleteQuestionController().handle);
 router.get("/question/:id", isAuthenticated, new FindQuestionByIdController().handle);
 router.get("/questions/category", isAuthenticated, new ListQuestionsByCategoryController().handle);
+
+// Musica
+router.post("/create/music", isAuthenticated, new CreateMusicController().handle);
+
 export default router;

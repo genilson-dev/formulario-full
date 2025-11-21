@@ -1,4 +1,4 @@
-import prismaDB from "../../prisma";
+import {prismaDB} from "../../prisma";
 import { QuestionUpdateRequest } from "../../interface/QuestionRequest";
 
 class UpdateQuestionService {

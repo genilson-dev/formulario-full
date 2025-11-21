@@ -1,10 +1,28 @@
-import prismaDB from "../../prisma";
+import { prismaDB } from "../../prisma";
 import { QuestionRequest } from "../../interface/QuestionRequest";
 
 class CreateQuestionService {
   async execute(data: QuestionRequest | QuestionRequest[]) {
-    // Se for várias questões
+    
+    // 👉 Se for várias questões (ARRAY)
     if (Array.isArray(data)) {
+
+      // 1️⃣ Validar cada userId antes de criar
+      for (const q of data) {
+        if (!q.userId) {
+          throw new Error("userId está faltando em uma das questões.");
+        }
+
+        const userExists = await prismaDB.user.findUnique({
+          where: { id: q.userId },
+        });
+
+        if (!userExists) {
+          throw new Error(`Usuário não encontrado: ${q.userId}`);
+        }
+      }
+
+      // 2️⃣ Criar todas as questões
       const result = await prismaDB.question.createMany({
         data: data.map(q => ({
           id: q.id,
@@ -25,7 +43,19 @@ class CreateQuestionService {
       return result; // { count: n }
     }
 
-    // Se for uma única questão
+    // 👉 Se for UMA única questão
+    if (!data.userId) {
+      throw new Error("userId está faltando para a criação da questão.");
+    }
+
+    const userExists = await prismaDB.user.findUnique({
+      where: { id: data.userId },
+    });
+
+    if (!userExists) {
+      throw new Error(`Usuário não encontrado: ${data.userId}`);
+    }
+
     const newQuestion = await prismaDB.question.create({
       data: {
         id: data.id,

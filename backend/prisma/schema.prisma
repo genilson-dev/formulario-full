@@ -1,60 +1,4 @@
-// generator client {
-//   provider = "prisma-client-js"
-// }
 
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
-
-// model User {
-//   id               String     @id @default(uuid()) @map("id")
-//   name             String     @map("name")
-//   email            String     @unique @map("email")
-//   password         String     @map("password")
-//   createdAt        DateTime?  @default(now())
-//   ativo            Boolean    @default(true) @map("ativo")
-//   resetToken       String?
-//   resetTokenExpiry DateTime?
-//   updatedAt        DateTime?  @default(now())
-//   questions        Question[]
-
-//   @@map("users")
-// }
-
-
-// model Question {
-//   id            String   @id @default(uuid()) @map("id")
-//   title         String   @map("title")
-//   description   String  @map("description")
-//   category      String   @map("category") // novo campo de categoria
-//   optionA       String   @map("option_a")
-//   optionB       String   @map("option_b")
-//   optionC       String   @map("option_c")
-//   optionD       String   @map("option_d")
-//   optionE       String   @map("option_e")
-//   correctOption String   @map("correct_option")
-//   createdAt     DateTime @default(now())
-//   ativo         Boolean  @default(true) @map("ativo")
-//   updatedAt     DateTime @updatedAt
-//   userId        String   @map("userId")
-//   user          User     @relation(fields: [userId], references: [id])
-//   options       Option[]
-
-//   @@map("questions")
-// }
-
-
-// model Option {
-//   id         String   @id @default(uuid()) @map("id")
-//   letter     String   @map("letter")   // "A", "B", "C", "D", "E"
-//   text       String   @map("text")
-//   isCorrect  Boolean  @map("is_correct")
-//   questionId String   @map("question_id")
-//   question   Question @relation(fields: [questionId], references: [id])
-
-//   @@map("options")
-// }
 
 generator client {
   provider = "prisma-client-js"
@@ -64,6 +8,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
 
 model User {
   id               String     @id @default(uuid()) @map("id")
@@ -112,23 +58,20 @@ model Option {
   @@map("options")
 }
 
-//
-// Novo modelo de membros GEM
-//
-model Membro {
-  id           String       @id @default(uuid()) @map("id") // IDENTIFICADOR UNICO
-  name         String       @map("nome") // NOME DO MEMBRO
-  inicioGem    DateTime     @map("inicio_gem") // DATA DE INICIO NA GEM ou seja, quando começou as aulas de musica
-  status       Status       @map("status") // STATUS ATUAL DO MEMBRO
-  funcao       Funcao       @map("funcao") // MUSICO OU ORGANISTA
-  congregacao  String       @map("congregacao")// AONDE CONGREGA
-  batizado     Boolean      @map("batizado") // SE É BATIZADO
-  dataBatismo  DateTime?    @map("data_batismo") // DATA DE BATISMO
-  instrumento  String       @map("instrumento") // INSTRUMENTO QUE TOCA
-  tonalidade   String       @map("tonalidade") // TONALIDADE QUE TOCA do instrumento
-  estadoCivil  EstadoCivil  @map("estado_civil") // SOLTEIRO OU CASADO
+model Musica {
+  id           String       @id @default(uuid()) @map("id")
+  name         String       @map("name")
+  inicioGem    DateTime     @map("inicio_gem")
+  status       Status       @map("status")
+  funcao       Funcao       @map("funcao")
+  congregacao  String       @map("congregacao")
+  batizado     Boolean      @map("batizado")
+  dataBatismo  DateTime?    @map("data_batismo")
+  instrumento  String       @map("instrumento")
+  tonalidade   String       @map("tonalidade")
+  estadoCivil  EstadoCivil  @map("estado_civil")
 
-  @@map("membros")
+  @@map("musicas")
 }
 
 enum Status {

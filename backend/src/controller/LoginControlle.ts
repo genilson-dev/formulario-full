@@ -26,7 +26,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import prisma from "../prisma";
+import {prismaDB} from "../prisma";
 
 class LoginController {
   async handle(req: Request, res: Response): Promise<Response> {
@@ -34,7 +34,7 @@ class LoginController {
 
     try {
       // busca usuário pelo email
-      const user = await prisma.user.findUnique({ where: { email } });
+      const user = await prismaDB.user.findUnique({ where: { email } });
 
       if (!user) {
         return res.status(400).json({ error: "Usuário não encontrado" });

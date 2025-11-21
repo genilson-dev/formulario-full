@@ -1,4 +1,4 @@
-import prismaDB from "../../prisma";
+import {prismaDB} from "../../prisma";
 
 class ListQuestionByCategoryService {
   async execute(category?: string, page: number = 1, perPage: number = 5) {

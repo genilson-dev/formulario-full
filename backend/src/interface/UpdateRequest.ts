@@ -4,6 +4,6 @@ export interface UpdateUserDTO {
   title?: string;
   email?: string;
   password?: string;
-  ativo?: boolean;
+  ativo: boolean;
   description?: string;
 }

@@ -1,4 +1,4 @@
-import prismaDB from '../prisma/index';
+import {prismaDB} from '../prisma';
 import { UserRequest } from '../interface/UserRequest';
 
 class FindUserByIdService {
