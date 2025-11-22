@@ -1,5 +1,5 @@
 // src/server/UpdateUserService.ts
-import {prismaDB} from "../prisma/index";
+import { prismaDB } from "../prisma/index";
 import bcrypt from "bcryptjs";
 import { UpdateUserDTO } from "../interface/UpdateRequest";
 

@@ -18,6 +18,9 @@ import ListQuestionsByCategoryController from "../controller/questions/ListQuest
 import DeleteUserController from "../controller/DeleteUserController";
 import CreateMusicController from "../controller/music/CreateMusicController";
 import ListMusicController from "../controller/music/ListMusicController";
+import ListAllAtivosMusicController from "../controller/music/ListMusicActivatedController";
+import ListAllInactivatedMusicController from "../controller/music/ListMusicInactivatedController";
+import UpdateMusicController from "../controller/music/UpdateMusicController";
 const router = Router();
 
 router.get("/teste", (req, res) => {
@@ -49,4 +52,7 @@ router.get("/questions/category", isAuthenticated, new ListQuestionsByCategoryCo
 // Musica
 router.post("/create/music", isAuthenticated, new CreateMusicController().create);
 router.get("/music/all", isAuthenticated, new ListMusicController().handle);
+router.get("/music/activated", isAuthenticated, new ListAllAtivosMusicController().handle);
+router.get("/music/inactivated", isAuthenticated, new ListAllInactivatedMusicController().handle);
+router.put("/music/update", isAuthenticated, new UpdateMusicController().handle);
 export default router;

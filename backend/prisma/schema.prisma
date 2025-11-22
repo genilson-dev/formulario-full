@@ -70,9 +70,7 @@ model Musica {
   instrumento  String       @map("instrumento")
   tonalidade   String       @map("tonalidade")
   estadoCivil  EstadoCivil  @map("estado_civil")
-
   ativo        Boolean      @default(true) @map("ativo")   // <-- CAMPO ADICIONADO
-
   createdAt    DateTime     @default(now()) @map("created_at")
   updatedAt    DateTime     @updatedAt @map("updated_at")
 
@@ -82,6 +80,7 @@ model Musica {
 
 enum Status {
   ALUNO
+  ALUNA
   ENSAIOS
   REUNIOES_JOVENS
   CULTOS_OFICIAIS
@@ -91,9 +90,20 @@ enum Status {
 enum Funcao {
   MUSICO
   ORGANISTA
+  INSTRUTOR
+  INSTRUTORA
+  EXAMINADORA
+  ENCARREGADO_LOCAL
+  ENCARREGADO_REGIONAL
 }
 
 enum EstadoCivil {
   SOLTEIRO
+  SOLTEIRA
   CASADO
+  CASADA
+  DIVORCIADO
+  DIVORCIADA
+  VIUVO
+  VIUVA
 }
