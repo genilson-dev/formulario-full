@@ -21,6 +21,8 @@ import ListMusicController from "../controller/music/ListMusicController";
 import ListAllAtivosMusicController from "../controller/music/ListMusicActivatedController";
 import ListAllInactivatedMusicController from "../controller/music/ListMusicInactivatedController";
 import UpdateMusicController from "../controller/music/UpdateMusicController";
+// import { SearchMusicByNameController } from "../controller/music/ListMusicByNameController";
+import SearchMusicByNameController from "../controller/music/ListMusicByNameController";
 const router = Router();
 
 router.get("/teste", (req, res) => {
@@ -55,4 +57,5 @@ router.get("/music/all", isAuthenticated, new ListMusicController().handle);
 router.get("/music/activated", isAuthenticated, new ListAllAtivosMusicController().handle);
 router.get("/music/inactivated", isAuthenticated, new ListAllInactivatedMusicController().handle);
 router.put("/music/update", isAuthenticated, new UpdateMusicController().handle);
+router.get("/music/:name", isAuthenticated, new SearchMusicByNameController().handle);
 export default router;
