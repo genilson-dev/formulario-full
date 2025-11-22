@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 // import prismaDB from "../prisma";
 import {prismaDB} from "../../prisma";
-class ListAllMusicController {
+class ListMusicByIdController {
   async handle(req: Request, res: Response) {
     try {
-      const users = await prismaDB.musica.findMany({
+      const users = await prismaDB.musica.findUnique({
+        where: {
+          id: req.body.id
+        },
         select: {
           id: true,
           name: true,
@@ -19,9 +22,6 @@ class ListAllMusicController {
           estadoCivil: true,
           createdAt: true,
           updatedAt: true,
-        },
-        orderBy: {
-          createdAt: "desc"
         }
       });
 
@@ -33,4 +33,4 @@ class ListAllMusicController {
   }
 }
 
-export default ListAllMusicController;
+export default ListMusicByIdController;
