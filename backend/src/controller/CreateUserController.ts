@@ -1,11 +1,11 @@
-
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import {prismaDB} from "../prisma";
+import { prismaDB } from "../prisma";
+import { Role } from "@prisma/client"; // importa o enum gerado pelo Prisma
 
 class CreateUserController {
   async handleCreateUser(req: Request, res: Response) {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: "Nome, email e senha são obrigatórios" });
@@ -21,11 +21,25 @@ class CreateUserController {
       // Criptografa a senha antes de salvar
       const hashSenha = await bcrypt.hash(password, 10);
 
+      // Converte string recebida para enum Role
+      let roleEnum: Role;
+      switch (role) {
+        case "ADMIN":
+          roleEnum = Role.ADMIN;
+          break;
+        case "VISITANTE":
+          roleEnum = Role.VISITANTE;
+          break;
+        default:
+          roleEnum = Role.USER; // valor padrão
+      }
+
       const user = await prismaDB.user.create({
         data: {
           name,
           email,
           password: hashSenha,
+          role: roleEnum, // ✅ agora salva o papel
         },
       });
 
@@ -33,8 +47,9 @@ class CreateUserController {
         id: user.id,
         name: user.name,
         email: user.email,
-        password: user.password,
-        ativo: user.ativo
+        role: user.role,
+        ativo: user.ativo,
+        createdAt: user.createdAt,
       });
     } catch (err: any) {
       return res.status(500).json({ error: err.message });

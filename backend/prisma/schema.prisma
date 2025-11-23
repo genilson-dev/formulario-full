@@ -16,6 +16,7 @@ model User {
   name             String     @map("name")
   email            String     @unique @map("email")
   password         String     @map("password")
+  role             Role       @default(USER) @map("role")
   createdAt        DateTime?  @default(now())
   ativo            Boolean    @default(true) @map("ativo")
   resetToken       String?
@@ -106,4 +107,35 @@ enum EstadoCivil {
   DIVORCIADA
   VIUVO
   VIUVA
+}
+
+enum Instrumento {
+  VIOLINO
+  VIOLA
+  VIOLONCELO
+  CONTRABAIXO_ACUSTICO
+  FLAUTA
+  CLARINETA
+  CLARINETA_ALTA
+  CLARINETA_BAIXA
+  SAXOFONE_SOPRANO
+  SAXOFONE_ALTO
+  SAXOFONE_TENOR
+  SAXOFONE_BARITONO
+  TROMPETE
+  TROMBONE
+  TROMBONITO
+  BOMBARDAO
+  TUBA
+  ORGAO
+}
+enum Tonalidade {
+  DO_MAIOR
+  SI_BEMOL
+  MI_BEMOL
+}
+enum Role {
+  ADMIN
+  USER
+  VISITANTE
 }

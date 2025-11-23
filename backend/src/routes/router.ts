@@ -24,6 +24,8 @@ import UpdateMusicController from "../controller/music/UpdateMusicController";
 // import { SearchMusicByNameController } from "../controller/music/ListMusicByNameController";
 import SearchMusicByNameController from "../controller/music/ListMusicByNameController";
 import ListMusicByIdController from "../controller/music/ListMusicByIdController";
+// import isAdmin from "../middleware/isAdmin";
+import { isAdmin } from "../middleware/isAdmin";
 const router = Router();
 
 router.get("/teste", (req, res) => {
@@ -37,7 +39,7 @@ router.get("/list/user/:id", new FindUserByIdController().handle)
 router.get("/user/:name", new SearchUserByNameController().handle);
 
 router.put("/user/update", isAuthenticated, new UpdateUserController().handle)
-router.delete("/user/delete", isAuthenticated, new DeleteUserController().delete);
+router.delete("/user/delete", isAuthenticated, isAdmin, new DeleteUserController().delete);
 
 router.post("/recupera-senha", RecoveryController.requestRecovery);
 router.post("/reset-senha", RecoveryController.resetPassword);
