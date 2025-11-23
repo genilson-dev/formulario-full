@@ -30,11 +30,13 @@ function Formulario() {
     }
 
     try {
-      const response = await fetch("http://localhost:1000/user", {
+      const response = await fetch("http://localhost:1000/user/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
+        
       });
+      console.log(response);
 
       const data = await response.json();
 
