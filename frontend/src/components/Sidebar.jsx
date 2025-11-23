@@ -23,6 +23,7 @@ function Sidebar() {
           <li><Link to="/reset-senha" onClick={() => setOpen(false)}>Resetar Senha</Link></li>
           <li><Link to="/users" onClick={() => setOpen(false)}>Usuários</Link></li>
           <li><Link to="/users/1/editar" onClick={() => setOpen(false)}>Editar Usuário</Link></li>
+          <li><Link to="/create-music" onClick={() => setOpen(false)}>Criar Músico</Link></li>
         </ul>
       </div>
     </div>

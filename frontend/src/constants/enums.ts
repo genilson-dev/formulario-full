@@ -1,0 +1,31 @@
+// src/constants/enums.ts
+export enum Status {
+  CULTOS_OFICIAIS = "CULTOS OFICIAIS",
+  REUNIOES_JOVENS = "REUNIOES DE JOVENS",
+  OFICIALIZADOS = "OFICIALIZADOS",
+  ENSAIOS = "ENSAIOS",
+  ALUNO = "ALUNO",
+  ALUNAS = "ALUNAS",
+  // adicione os demais...
+}
+
+export enum Funcao {
+  MUSICO = "MUSICO",
+  INSTRUTOR = "INSTRUTOR",
+  INSTRUTORA = "INSTRUTORA",
+  ENCARREGADO_REGIONAL = "ENCARREGADO REGIONAL",
+  ENCARREGADO_LOCAL = "ENCARREGADO LOCAL",
+  EXAMINADORA = "EXAMINADORA",
+
+  // adicione os demais...
+}
+
+export enum EstadoCivil {
+  SOLTEIRO = "SOLTEIRO",
+  CASADO = "CASADO",
+  DIVORCIADO = "DIVORCIADO",
+  VIUVO = "VIÚVO",
+  SEPARADO = "SEPARADO",
+  UNIAO_ESTAVEL = "UNIÃO ESTÁVEL",
+  // adicione os demais...
+}

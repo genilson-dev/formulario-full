@@ -48,6 +48,9 @@ export default function Home() {
           <Link to="/formulario">
             <button>Criar novo usuário</button>
           </Link>
+          <Link to="/create-music">
+            <button>Criar novo musico</button>
+          </Link>
 
           {/* Se estiver logado, mostra nome + logout */}
           {userName && (

@@ -7,6 +7,7 @@ import ResetSenha from "./components/RecoveryUser";
 import Usuarios from "./components/Usuarios";
 import EditarUsuario from "./components/EditarUsuario";
 import Sidebar from "./components/Sidebar";
+import CreateMusicForm from "./components/CreateMusicForm";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/users" element={<Usuarios />} />
             {/* <Route path="/user/update" element={<EditarUsuario />} /> */}
             <Route path="/users/:id/editar" element={<EditarUsuario />} />
+            <Route path="/create-music" element={<CreateMusicForm />} />
 
           </Routes>
         </div>

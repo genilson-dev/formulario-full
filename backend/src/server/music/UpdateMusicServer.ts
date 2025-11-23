@@ -30,7 +30,7 @@ class UpdateMusicService {
 
     const data: any = {};
 
-    if (name !== undefined) data.name = name;
+    if (name !== undefined) data.name = name.toLocaleUpperCase();
     if (ativo !== undefined) data.ativo = ativo;
 
     if (inicioGem !== undefined) {
@@ -54,17 +54,17 @@ class UpdateMusicService {
       }
     }
 
-    if (congregacao !== undefined) data.congregacao = congregacao;
+    if (congregacao !== undefined) data.congregacao = congregacao.toLocaleUpperCase();
     if (batizado !== undefined) data.batizado = batizado;
 
     if (dataBatismo !== undefined) {
       data.dataBatismo =
-        typeof dataBatismo === "string" ? new Date(dataBatismo) : dataBatismo;
+        typeof dataBatismo === "string" ? new Date(dataBatismo) : dataBatismo ? dataBatismo : null;
     }
 
-    if (instrumento !== undefined) data.instrumento = instrumento;
-    if (tonalidade !== undefined) data.tonalidade = tonalidade;
-    if (estadoCivil !== undefined) data.estadoCivil = estadoCivil;
+    if (instrumento !== undefined) data.instrumento = instrumento.toLocaleUpperCase();
+    if (tonalidade !== undefined) data.tonalidade = tonalidade.toLocaleUpperCase();
+    if (estadoCivil !== undefined) data.estadoCivil = estadoCivil.toLocaleUpperCase();
 
     const musico = await prismaDB.musica.update({
       where: { id },
