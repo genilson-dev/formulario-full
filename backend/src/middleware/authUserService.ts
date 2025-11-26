@@ -1,6 +1,7 @@
 
 import { Request, Response, NextFunction } from "express";
-import { Jwt, verify } from "jsonwebtoken";
+import jwt, { verify } from "jsonwebtoken";
+
 
 export default function isAuthenticated(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;

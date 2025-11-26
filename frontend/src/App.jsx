@@ -8,25 +8,73 @@ import Usuarios from "./components/Usuarios";
 import EditarUsuario from "./components/EditarUsuario";
 import Sidebar from "./components/Sidebar";
 import CreateMusicForm from "./components/CreateMusicForm";
+import PrivateRoute from "./components/PrivateRouter";
 
 function App() {
   return (
     <Router>
       <div style={{ display: "flex" }}>
+        {/* Sidebar aparece sempre que estiver logado */}
         <Sidebar />
+
         <div style={{ flex: 1, padding: "20px" }}>
           <Routes>
-            {/* Rotas públicas */}
+
+            {/* ======================= */}
+            {/* ROTAS PÚBLICAS           */}
+            {/* ======================= */}
             <Route path="/login" element={<LoginUser />} />
             <Route path="/" element={<LoginUser />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/formulario" element={<Formulario />} />
             <Route path="/recupera-senha" element={<RecuperacaoSenha />} />
             <Route path="/reset-senha" element={<ResetSenha />} />
-            <Route path="/users" element={<Usuarios />} />
-            {/* <Route path="/user/update" element={<EditarUsuario />} /> */}
-            <Route path="/users/:id/editar" element={<EditarUsuario />} />
-            <Route path="/create-music" element={<CreateMusicForm />} />
+
+            {/* ======================= */}
+            {/* ROTAS PRIVADAS           */}
+            {/* ======================= */}
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/formulario"
+              element={
+                <PrivateRoute>
+                  <Formulario />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/users"
+              element={
+                <PrivateRoute>
+                  <Usuarios />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/users/:id/editar"
+              element={
+                <PrivateRoute>
+                  <EditarUsuario />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/create-music"
+              element={
+                <PrivateRoute>
+                  <CreateMusicForm />
+                </PrivateRoute>
+              }
+            />
 
           </Routes>
         </div>

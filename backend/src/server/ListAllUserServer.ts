@@ -7,6 +7,8 @@ export default class ListAllUserServicer {
                 id: true,
                 name: true,
                 email: true,
+                role: true,
+                ativo: true,
                 createdAt: true,
                 updatedAt: true
             },

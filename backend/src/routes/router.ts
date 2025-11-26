@@ -15,6 +15,7 @@ import UpdateQuestionController from "../controller/questions/UpdateControllerQu
 import FindQuestionByIdController from "../controller/questions/ListQuestionByIdController";
 import CreateControllerQuestion from "../controller/questions/CreateControllerQuestion";
 import ListQuestionsByCategoryController from "../controller/questions/ListQuestionByCategoryController";
+// import DeleteUserController from "../controller/DeleteUserController";
 import DeleteUserController from "../controller/DeleteUserController";
 import CreateMusicController from "../controller/music/CreateMusicController";
 import ListMusicController from "../controller/music/ListMusicController";
@@ -24,42 +25,53 @@ import UpdateMusicController from "../controller/music/UpdateMusicController";
 // import { SearchMusicByNameController } from "../controller/music/ListMusicByNameController";
 import SearchMusicByNameController from "../controller/music/ListMusicByNameController";
 import ListMusicByIdController from "../controller/music/ListMusicByIdController";
+import { InactivateUserController } from "../controller/InactivateUserController";
 // import isAdmin from "../middleware/isAdmin";
 import { isAdmin } from "../middleware/isAdmin";
+
 const router = Router();
 
 router.get("/teste", (req, res) => {
     return res.send("A rota teste esta funcionando com sucesso")
 })
 
-router.post("/user/create", new CreateUserController().handleCreateUser)
-router.post("/login", new AuthUserController().handle)
-router.get("/user/all", isAuthenticated, new ListUsersController().handle)
-router.get("/list/user/:id", new FindUserByIdController().handle)
-router.get("/user/:name", new SearchUserByNameController().handle);
+// USERS
+router.post("/user/create", new CreateUserController().handleCreateUser);
+router.post("/login", new AuthUserController().handle);
+router.get("/user/all", isAuthenticated, isAdmin, new ListUsersController().handle);
 
-router.put("/user/update", isAuthenticated, new UpdateUserController().handle)
-router.delete("/user/delete", isAuthenticated, isAdmin, new DeleteUserController().delete);
+router.get("/user/id/:id", isAuthenticated, isAdmin, new FindUserByIdController().handle);
+router.get("/user/name/:name", isAuthenticated, isAdmin, new SearchUserByNameController().handle);
+router.put("/user/inativar/:id", isAuthenticated, isAdmin, new InactivateUserController().handle);
+
+router.put("/user/id/:id", isAuthenticated, isAdmin, new UpdateUserController().handle);
+router.delete("/user/id/:id", isAuthenticated, isAdmin, new DeleteUserController().handle);
+
 
 router.post("/recupera-senha", RecoveryController.requestRecovery);
 router.post("/reset-senha", RecoveryController.resetPassword);
 
 
 // Questoes
-router.post("/create/question", isAuthenticated, new CreateControllerQuestion().handleCreate);
+router.post("/create/question", isAuthenticated,new CreateControllerQuestion().handleCreate);
 
 router.get("/list/questions/all", isAuthenticated, new ListQuestionsController().handle)
 router.put("/update/question/:id", isAuthenticated, new UpdateQuestionController().handle)
 router.delete("/delete/question/:id", isAuthenticated, new DeleteQuestionController().handle);
 router.get("/question/:id", isAuthenticated, new FindQuestionByIdController().handle);
 router.get("/questions/category", isAuthenticated, new ListQuestionsByCategoryController().handle);
-
 // Musica
 router.post("/create/music", isAuthenticated, new CreateMusicController().create);
-router.get("/music/all", isAuthenticated, new ListMusicController().handle);
-router.get("/music/activated", isAuthenticated, new ListAllAtivosMusicController().handle);
-router.get("/music/inactivated", isAuthenticated, new ListAllInactivatedMusicController().handle);
-router.put("/music/update", isAuthenticated, new UpdateMusicController().handle);
-router.get("/music/:name", isAuthenticated, new SearchMusicByNameController().handle);
+router.get("/music/all", isAuthenticated,  new ListMusicController().handle);
+router.get("/music/activated", isAuthenticated,  new ListAllAtivosMusicController().handle);
+router.get("/music/inactivated", isAuthenticated,  new ListAllInactivatedMusicController().handle);
+router.put("/music/update", isAuthenticated,  new UpdateMusicController().handle);
+router.get("/music/:name", isAuthenticated,  new SearchMusicByNameController().handle);
 router.get("/music/id/:id", isAuthenticated, new ListMusicByIdController().handle);
+
+router.get("/profile", isAuthenticated, (req, res) => {
+  res.json({ user: req.user });
+});
+
+
 export default router;

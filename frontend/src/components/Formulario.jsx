@@ -1,17 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Formulario.css"; // importa o CSS separado
+import "../styles/Formulario.css";
+import { API_URL } from "../config/api"; // ← usa API_URL igual no Login
 
 function Formulario() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("USER");
   const [message, setMessage] = useState("");
   const [load, setLoad] = useState(false);
 
   const navigate = useNavigate();
 
-  // Função para validar senha
   function validarSenha(senha) {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
     return regex.test(senha);
@@ -30,20 +31,21 @@ function Formulario() {
     }
 
     try {
-      const response = await fetch("http://localhost:1000/user/create", {
+      const response = await fetch(`${API_URL}/user/create`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
-        
+        headers: { 
+          "Content-Type": "application/json",
+          // Authorization opcional
+          Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+        },
+        body: JSON.stringify({ name, email, password, role }),
       });
-      console.log(response);
 
       const data = await response.json();
 
       if (response.ok) {
-        console.log(data);
         setMessage(`Cadastro realizado com sucesso para: ${name}`);
-        navigate("/login"); // 🚀 Redireciona para login
+        navigate("/login");
       } else {
         setMessage(data.error || "Erro ao cadastrar ❌");
       }
@@ -67,6 +69,7 @@ function Formulario() {
           required
           className="form-input"
         />
+
         <input
           type="email"
           value={email}
@@ -75,6 +78,7 @@ function Formulario() {
           required
           className="form-input"
         />
+
         <input
           type="password"
           value={password}
@@ -83,10 +87,22 @@ function Formulario() {
           required
           className="form-input"
         />
+
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="form-input"
+        >
+          <option value="USER">Usuário</option>
+          <option value="ADMIN">Administrador</option>
+          <option value="VISITANTE">Visitante</option>
+        </select>
+
         <button type="submit" disabled={load} className="form-button">
           {load ? "Enviando..." : "Cadastrar"}
         </button>
       </form>
+
       {message && <p className="form-message">{message}</p>}
     </div>
   );

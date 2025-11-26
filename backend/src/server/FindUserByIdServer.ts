@@ -12,6 +12,8 @@ class FindUserByIdService {
       select: {
         id: true,
         name: true,
+        role: true,
+        ativo: true,
         email: true,
         createdAt: true,
         updatedAt: true,

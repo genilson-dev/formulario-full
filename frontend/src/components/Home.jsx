@@ -8,13 +8,11 @@ export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    // Primeiro tenta pegar do state (passado pelo navigate)
     if (location.state?.userName) {
       setUserName(location.state.userName);
       return;
     }
 
-    // Se não tiver no state, pega do localStorage
     const userData = localStorage.getItem("user");
     if (userData) {
       try {
@@ -33,30 +31,32 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {/* Barra superior */}
+    <div className="home-page">
+      {/* NAVBAR */}
       <div className="navbar">
-        <div className="nav-buttons">
-          {/* Só mostra o botão de Login se NÃO tiver usuário logado */}
+        <div className="nav-left">
+          <h2 className="logo">🎵 Sistema</h2>
+        </div>
+
+        <div className="nav-right">
           {!userName && (
             <Link to="/login">
-              <button>Login</button>
+              <button className="btn primary">Login</button>
             </Link>
           )}
 
-          {/* Botão de criar usuário sempre aparece */}
           <Link to="/formulario">
-            <button>Criar novo usuário</button>
-          </Link>
-          <Link to="/create-music">
-            <button>Criar novo musico</button>
+            <button className="btn">Criar usuário</button>
           </Link>
 
-          {/* Se estiver logado, mostra nome + logout */}
+          <Link to="/create-music">
+            <button className="btn">Criar músico</button>
+          </Link>
+
           {userName && (
             <>
-              <span>👤 {userName}</span>
-              <button onClick={handleLogout} className="logout-btn">
+              <span className="user-tag">👤 {userName}</span>
+              <button onClick={handleLogout} className="btn logout">
                 Logout
               </button>
             </>
@@ -64,11 +64,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Conteúdo central */}
+      {/* CONTEÚDO */}
       <div className="home-container">
-        {/* <h1>Bem-vindo {userName || "Visitante"}</h1> */}
-        {/* <h1>Bem-vindo {userName || "Visitante"}</h1> */}
-        <h3>Home Page!</h3>
+        <h1 className="title">Bem-vindo, {userName || "Visitante"} 👋</h1>
+        <p className="subtitle">Você está na Home Page</p>
       </div>
     </div>
   );

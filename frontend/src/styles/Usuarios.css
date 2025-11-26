@@ -1,86 +1,121 @@
-/* Container das ações */
-td .actions {
-  display: flex;
-  gap: 8px; /* espaço entre os botões */
-  justify-content: flex-start; /* pode ser center ou space-between */
-  align-items: center;
-}
-
-/* Botões */
-.action-button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.action-button.edit {
-  background: #3b82f6;
-  color: white;
-}
-
-.action-button.edit:hover {
-  background: #2563eb;
-}
-
-.action-button.delete {
-  background: #ef4444;
-  color: white;
-}
-
-.action-button.delete:hover {
-  background: #dc2626;
-}
-
-.action-button.toggle {
-  background: #10b981;
-  color: white;
-}
-
-.action-button.toggle:hover {
-  background: #059669;
-}
-.action-button.inactive {
-  background: #6b7280;
-  color: white;
-}
-
-table {
+/* ===== Container ===== */
+.usuarios-container {
+  padding: 20px;
   width: 100%;
-  border-collapse: collapse; /* junta as bordas */
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid #e5e7eb; /* ✅ borda externa da tabela */
+  color: #333;
 }
 
-thead {
-  background: #4f46e5;
-  color: white;
+.usuarios-title {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
 }
 
-thead th {
+/* ===== Card ===== */
+.usuarios-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== Table ===== */
+.usuarios-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.usuarios-table th {
+  background: #f4f4f4;
   padding: 12px;
   text-align: left;
+  font-size: 14px;
   font-weight: 600;
-  border: 1px solid #ddd; /* ✅ borda entre colunas do cabeçalho */
 }
 
-tbody td {
+.usuarios-table td {
   padding: 12px;
-  color: #444;
-  border: 1px solid #ddd; /* ✅ borda entre células */
+  border-top: 1px solid #eee;
 }
 
-tbody tr:hover {
-  background: #f3f4f6;
+/* ===== Badges ===== */
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.role-admin {
+  background: #d9534f;
+}
+
+.role-user {
+  background: #0275d8;
+}
+
+.role-visitante {
+  background: #5cb85c;
+}
+
+/* ===== Status ===== */
+.status {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.status.on {
+  background: #d4f8d4;
+  color: #2e7d32;
+}
+
+.status.off {
+  background: #ffd4d4;
+  color: #c62828;
+}
+
+/* ===== Buttons ===== */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn.edit {
+  background: #0275d8;
+  color: white;
+}
+
+.btn.delete {
+  background: #d9534f;
+  color: white;
+}
+
+.btn.toggle {
+  background: #5bc0de;
+  color: white;
 }
 
 .no-users {
   text-align: center;
   padding: 20px;
-  color: #888;
-  border: none;
+  font-size: 16px;
+  color: #777;
 }

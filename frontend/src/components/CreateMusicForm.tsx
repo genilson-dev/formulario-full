@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Funcao, Status, EstadoCivil } from "../constants/enums";
+import { Funcao, Status, EstadoCivil, Tonalidade, Instrumento } from "../constants/enums";
 import "../styles/CreateMusicForm.css";
 
 const CreateMusicForm: React.FC = () => {
@@ -15,6 +15,8 @@ const CreateMusicForm: React.FC = () => {
     instrumento: "",
     tonalidade: "",
     estadoCivil: "" as EstadoCivil,
+    Tonalidade: "" as Tonalidade,
+    Instrumento: "" as Instrumento
   });
 
   const handleChange = (
@@ -76,7 +78,7 @@ const CreateMusicForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="form-container">
   <h2>Cadastrar Músico</h2>
-
+nome
   <input
     className="form-input"
     name="name"
@@ -84,15 +86,16 @@ const CreateMusicForm: React.FC = () => {
     value={formData.name}
     onChange={handleChange}
   />
-
+inicio GEM
   <input
     className="form-input"
     type="date"
     name="inicioGem"
+    placeholder="Inicio do G.E.M"
     value={formData.inicioGem}
     onChange={handleChange}
   />
-
+Situação atual
   <select
     className="form-select"
     name="status"
@@ -146,21 +149,32 @@ const CreateMusicForm: React.FC = () => {
     />
   )}
 
-  <input
-    className="form-input"
-    name="instrumento"
-    placeholder="Instrumento"
-    value={formData.instrumento}
-    onChange={handleChange}
-  />
 
-  <input
-    className="form-input"
-    name="tonalidade"
-    placeholder="Tonalidade"
-    value={formData.tonalidade}
+    <select
+    className="form-select"
+    name="Instrumento"
+    value={formData.Instrumento}
     onChange={handleChange}
-  />
+  >
+    <option value="instrumento">Selecione o Instrumento</option>
+    {Object.values(Instrumento).map((ec) => (
+      <option key={ec} value={ec}>{ec}</option>
+    ))}
+  </select>
+
+
+
+  <select
+    className="form-select"
+    name="Tonalidade"
+    value={formData.Tonalidade}
+    onChange={handleChange}
+  >
+    <option value="">Selecione A tonalidade</option>
+    {Object.values(Tonalidade).map((ec) => (
+      <option key={ec} value={ec}>{ec}</option>
+    ))}
+  </select>
 
   <select
     className="form-select"

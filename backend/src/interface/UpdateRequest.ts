@@ -1,3 +1,5 @@
+import { Role } from "@prisma/client";
+
 export interface UpdateUserDTO {
   id: string;
   name?: string;
@@ -5,5 +7,6 @@ export interface UpdateUserDTO {
   email?: string;
   password?: string;
   ativo: boolean;
+  role?: Role;
   description?: string;
 }

@@ -26,11 +26,11 @@ class AuthUserController {
 
       // 3. Gerar token JWT
       const token = sign(
-        { email: user.email, name: user.name },
+        { email: user.email, name: user.name, role: user.role },
         process.env.SECRET_JWT as string,
         {
           subject: user.id,
-          expiresIn: "1d",
+          expiresIn: "190d",
         }
       );
 

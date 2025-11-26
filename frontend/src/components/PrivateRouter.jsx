@@ -1,25 +1,11 @@
-// import {Navigate} from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
-// export default function PrivateRouter({children}) {
-//     const userDate = localStorage.getItem('user');
+export default function PrivateRoute({ children }) {
+  const token = localStorage.getItem("token");
 
-//     // Se não houver usuario, redireciona para login
-//     if(!userDate){
-//         return <Navigate to="/login" replace />
-//     }
-//     // Se tiver usuario, renderizar a pagina normalmente
-//     return children;
-
-// }
-
-import { Navigate, Outlet } from "react-router-dom";
-
-export default function PrivateRoute() {
-  const userData = localStorage.getItem("user");
-
-  if (!userData) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
-  return <Outlet />;
+  return children;
 }

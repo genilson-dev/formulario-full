@@ -40,6 +40,7 @@ class CreateUserController {
           email,
           password: hashSenha,
           role: roleEnum, // ✅ agora salva o papel
+          ativo: true, // Define o usuário como ativo por padrão
         },
       });
 
