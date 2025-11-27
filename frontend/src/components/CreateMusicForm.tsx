@@ -4,7 +4,7 @@ import { Funcao, Status, EstadoCivil, Tonalidade, Instrumento } from "../constan
 import "../styles/CreateMusicForm.css";
 
 const CreateMusicForm: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const initialState = {
     name: "",
     inicioGem: "",
     status: "" as Status,
@@ -12,12 +12,12 @@ const CreateMusicForm: React.FC = () => {
     congregacao: "",
     batizado: false,
     dataBatismo: "",
-    instrumento: "",
-    tonalidade: "",
     estadoCivil: "" as EstadoCivil,
-    Tonalidade: "" as Tonalidade,
-    Instrumento: "" as Instrumento
-  });
+    tonalidade: "" as Tonalidade,
+    instrumento: "" as Instrumento,
+  };
+
+  const [formData, setFormData] = useState(initialState);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -44,9 +44,7 @@ const CreateMusicForm: React.FC = () => {
             : null,
       };
 
-      // ✅ Recupera o token de dentro do objeto "user"
-      const userData = localStorage.getItem("user");
-      const token = userData ? JSON.parse(userData).token : null;
+      const token = localStorage.getItem("token");
 
       if (!token) {
         alert("Você precisa estar logado para cadastrar um músico.");
@@ -58,7 +56,7 @@ const CreateMusicForm: React.FC = () => {
         payload,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // envia token JWT
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -66,6 +64,10 @@ const CreateMusicForm: React.FC = () => {
 
       alert("Músico cadastrado com sucesso!");
       console.log(response.data);
+
+      // 🔥 RESET DO FORMULÁRIO
+      setFormData(initialState);
+
     } catch (error: any) {
       console.error(error);
       alert(
@@ -77,119 +79,130 @@ const CreateMusicForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-  <h2>Cadastrar Músico</h2>
-nome
-  <input
-    className="form-input"
-    name="name"
-    placeholder="Nome"
-    value={formData.name}
-    onChange={handleChange}
-  />
-inicio GEM
-  <input
-    className="form-input"
-    type="date"
-    name="inicioGem"
-    placeholder="Inicio do G.E.M"
-    value={formData.inicioGem}
-    onChange={handleChange}
-  />
-Situação atual
-  <select
-    className="form-select"
-    name="status"
-    value={formData.status}
-    onChange={handleChange}
-  >
-    <option value="">Selecione o Status</option>
-    {Object.values(Status).map((s) => (
-      <option key={s} value={s}>{s}</option>
-    ))}
-  </select>
+      <h2>Cadastrar Músico</h2>
 
-  <select
-    className="form-select"
-    name="funcao"
-    value={formData.funcao}
-    onChange={handleChange}
-  >
-    <option value="">Selecione a Função</option>
-    {Object.values(Funcao).map((f) => (
-      <option key={f} value={f}>{f}</option>
-    ))}
-  </select>
+      Nome
+      <input
+        className="form-input"
+        name="name"
+        placeholder="Nome"
+        value={formData.name}
+        onChange={handleChange}
+      />
 
-  <input
-    className="form-input"
-    name="congregacao"
-    placeholder="Congregação"
-    value={formData.congregacao}
-    onChange={handleChange}
-  />
+      Início GEM
+      <input
+        className="form-input"
+        type="date"
+        name="inicioGem"
+        value={formData.inicioGem}
+        onChange={handleChange}
+      />
 
-  <label>
-    <input
-      className="form-checkbox"
-      type="checkbox"
-      name="batizado"
-      checked={formData.batizado}
-      onChange={handleChange}
-    />
-    Batizado
-  </label>
+      Situação atual
+      <select
+        className="form-select"
+        name="status"
+        value={formData.status}
+        onChange={handleChange}
+      >
+        <option value="">Selecione o Status</option>
+        {Object.values(Status).map((s) => (
+          <option key={s} value={s}>
+            {s}
+          </option>
+        ))}
+      </select>
 
-  {formData.batizado && (
-    <input
-      className="form-input"
-      type="date"
-      name="dataBatismo"
-      value={formData.dataBatismo}
-      onChange={handleChange}
-    />
-  )}
+      <select
+        className="form-select"
+        name="funcao"
+        value={formData.funcao}
+        onChange={handleChange}
+      >
+        <option value="">Selecione a Função</option>
+        {Object.values(Funcao).map((f) => (
+          <option key={f} value={f}>
+            {f}
+          </option>
+        ))}
+      </select>
 
+      <input
+        className="form-input"
+        name="congregacao"
+        placeholder="Congregação"
+        value={formData.congregacao}
+        onChange={handleChange}
+      />
 
-    <select
-    className="form-select"
-    name="Instrumento"
-    value={formData.Instrumento}
-    onChange={handleChange}
-  >
-    <option value="instrumento">Selecione o Instrumento</option>
-    {Object.values(Instrumento).map((ec) => (
-      <option key={ec} value={ec}>{ec}</option>
-    ))}
-  </select>
+      <label>
+        <input
+          className="form-checkbox"
+          type="checkbox"
+          name="batizado"
+          checked={formData.batizado}
+          onChange={handleChange}
+        />
+        Batizado
+      </label>
 
+      {formData.batizado && (
+        <input
+          className="form-input"
+          type="date"
+          name="dataBatismo"
+          value={formData.dataBatismo}
+          onChange={handleChange}
+        />
+      )}
 
+      <select
+        className="form-select"
+        name="instrumento"
+        value={formData.instrumento}
+        onChange={handleChange}
+      >
+        <option value="">Selecione o Instrumento</option>
+        {Object.values(Instrumento).map((i) => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        ))}
+      </select>
 
-  <select
-    className="form-select"
-    name="Tonalidade"
-    value={formData.Tonalidade}
-    onChange={handleChange}
-  >
-    <option value="">Selecione A tonalidade</option>
-    {Object.values(Tonalidade).map((ec) => (
-      <option key={ec} value={ec}>{ec}</option>
-    ))}
-  </select>
+      <select
+        className="form-select"
+        name="tonalidade"
+        value={formData.tonalidade}
+        onChange={handleChange}
+      >
+        <option value="">Selecione a Tonalidade</option>
+        {Object.values(Tonalidade).map((t) => (
+          <option key={t} value={t}>
+            {t}
+          </option>
+        ))}
+      </select>
 
-  <select
-    className="form-select"
-    name="estadoCivil"
-    value={formData.estadoCivil}
-    onChange={handleChange}
-  >
-    <option value="">Selecione o Estado Civil</option>
-    {Object.values(EstadoCivil).map((ec) => (
-      <option key={ec} value={ec}>{ec}</option>
-    ))}
-  </select>
+      <select
+        className="form-select"
+        name="estadoCivil"
+        value={formData.estadoCivil}
+        onChange={handleChange}
+      >
+        <option value="">Selecione o Estado Civil</option>
+        {Object.values(EstadoCivil).map((ec) => (
+          <option key={ec} value={ec}>
+            {ec}
+          </option>
+        ))}
+      </select>
 
-  <button type="submit" className="form-button">Cadastrar Músico</button>
-</form>
+      <button type="submit" className="form-button">
+        Cadastrar Músico
+      </button>
+    </form>
   );
 };
 

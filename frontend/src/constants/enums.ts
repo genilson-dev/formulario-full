@@ -5,11 +5,12 @@ export enum Status {
   OFICIALIZADO = "OFICIALIZADO",
   ENSAIOS = "ENSAIOS",
   ALUNO = "ALUNO",
-  ALUNAS = "ALUNAS",
+  ALUNA = "ALUNA",
   // adicione os demais...
 }
 
 export enum Funcao {
+  ORGANISTA = "ORGANISTA",
   MUSICO = "MUSICO",
   INSTRUTOR = "INSTRUTOR",
   INSTRUTORA = "INSTRUTORA",
@@ -22,6 +23,7 @@ export enum Funcao {
 
 export enum EstadoCivil {
   SOLTEIRO = "SOLTEIRO",
+  SOLTEIRA = "SOLTEIRA",
   CASADO = "CASADO",
   DIVORCIADO = "DIVORCIADO",
   VIUVO = "VIÚVO",
@@ -33,7 +35,7 @@ export enum Tonalidade {
   DO = "DO_MAIOR",
   SI = "SI_BEMOL",
   MI = "MI_BEMOL",
-  FA = "FA_MAIO"
+  FA = "FA_MAIOR"
 }
 
 export enum Instrumento {
@@ -43,8 +45,8 @@ export enum Instrumento {
   CONTRABAIXO_ACUSTICO = "CONTRABAIXO_ACUSTICO",
   FLAUTA = "FLAUTA",
   CLARINETA = "CLARINETA",
-  CLARINETA_ALTA = "CLARINETA_ALTA",
-  CLARINETA_BAIXA = "CLARINETA_BAIXA",
+  CLARINETA_ALTA = "CLARINETA_ALTO",
+  CLARINETA_BAIXA = "CLARINETA_BAIXO",
   SAXOFONE_SOPRANO = "SAXOFONE_SOPRANO",
   SAXOFONE_ALTO = "SAXOFONE_ALTO",
   SAXOFONE_TENOR = "SAXOFONE_TENOR",
