@@ -1,5 +1,5 @@
-import { prismaDB } from "../prisma/index";
-import { UserRequest } from "../interface/UserRequest";
+import { prismaDB } from "../../prisma/index";
+import { UserRequest } from "../../interface/UserRequest";
 import { hash } from "bcryptjs";
 import { Role } from "@prisma/client"; // importa o enum
 

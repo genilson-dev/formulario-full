@@ -44,7 +44,7 @@
 
 // src/controller/DeleteUserController.ts
 import { Request, Response } from "express";
-import DeleteUserService from "../server/DeleteUserService";
+import DeleteUserService from "../../server/user/DeleteUserService";
 import { validate as uuidValidate } from "uuid";
 
 const deleteUserService = new DeleteUserService();

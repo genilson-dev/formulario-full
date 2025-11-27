@@ -1,5 +1,5 @@
 // import prismaClient from "../../prisma";
-import { prismaDB } from "../prisma";
+import { prismaDB } from "../../prisma";
 interface InactivateUserRequest {
   id: string;
   ativo: boolean; // true ou false

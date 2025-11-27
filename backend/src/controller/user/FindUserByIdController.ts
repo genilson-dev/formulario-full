@@ -32,7 +32,7 @@
 // export default FindUserByIdController;
 
 import { Request, Response } from "express";
-import FindUserByIdService from "../server/FindUserByIdServer";
+import FindUserByIdService from "../../server/user/FindUserByIdServer";
 
 class FindUserByIdController {
   async handle(req: Request, res: Response) {

@@ -1,5 +1,5 @@
-import {prismaDB} from '../prisma';
-import { UserRequest } from '../interface/UserRequest';
+import {prismaDB} from '../../prisma';
+import { UserRequest } from '../../interface/UserRequest';
 
 class FindUserByIdService {
   async execute({ id }: UserRequest) {

@@ -1,4 +1,4 @@
-import {prismaDB} from "../prisma";
+import {prismaDB} from "../../prisma";
 
 export default class ListAllUserServicer {
     async execute() {

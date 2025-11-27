@@ -1,6 +1,6 @@
-import { prismaDB } from "../prisma";
+import { prismaDB } from "../../prisma";
 import bcrypt from "bcryptjs";
-import { UpdateUserDTO } from "../interface/UpdateRequest";
+import { UpdateUserDTO } from "../../interface/UpdateRequest";
 import { Role } from "@prisma/client";
 
 class UpdateUserService {

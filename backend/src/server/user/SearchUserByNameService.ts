@@ -1,4 +1,4 @@
-import {prismaDB} from "../prisma";
+import {prismaDB} from "../../prisma";
 
 class SearchUserByNameService {
   async execute({ name, email }: SearchRequest) {

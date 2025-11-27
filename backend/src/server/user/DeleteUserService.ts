@@ -1,5 +1,5 @@
 // src/server/DeleteUserService.ts
-import { prismaDB } from "../prisma";
+import { prismaDB } from "../../prisma";
 
 class DeleteUserService {
   async execute(id: string) {

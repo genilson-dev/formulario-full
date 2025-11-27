@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RecoveryService } from "../server/recoveryServer";
+import { RecoveryService } from "../../server/user/recoveryServer";
 
 export class RecoveryController {
   // Solicita recuperação (gera token)

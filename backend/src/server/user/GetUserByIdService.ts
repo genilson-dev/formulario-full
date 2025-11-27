@@ -1,5 +1,5 @@
 // src/server/GetUserByIdService.ts
-import { prismaDB } from "../prisma";
+import { prismaDB } from "../../prisma";
 
 class GetUserByIdService {
   async execute(id: string) {

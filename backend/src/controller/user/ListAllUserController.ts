@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 // import prismaDB from "../prisma";
-import {prismaDB} from "../prisma";
+import { prismaDB } from "../../prisma";
 class ListAllUserController {
   async handle(req: Request, res: Response) {
     try {

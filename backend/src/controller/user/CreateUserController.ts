@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { prismaDB } from "../prisma";
+import { prismaDB } from "../../prisma";
 import { Role } from "@prisma/client"; // importa o enum gerado pelo Prisma
 
 class CreateUserController {

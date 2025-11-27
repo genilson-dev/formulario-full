@@ -1,7 +1,7 @@
 // src/controllers/GetUserByIdController.ts
 import { Request, Response } from "express";
 // import GetUserByIdService from "../server/GetUserByIdService";
-import GetUserByIdService from "../server/GetUserByIdService";
+import GetUserByIdService from "../../server/user/GetUserByIdService";
 class GetUserByIdController {
   async handle(req: Request, res: Response): Promise<Response> {
     try {

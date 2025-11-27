@@ -1,5 +1,5 @@
-import { AutRequest } from "../interface/AutRequest";
-import {prismaDB} from "../prisma";
+import { AutRequest } from "../../interface/AutRequest";
+import {prismaDB} from "../../prisma";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 

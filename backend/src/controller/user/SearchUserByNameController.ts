@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import SearchUserByNameService from '../server/SearchUserByNameService';
+import SearchUserByNameService from '../../server/user/SearchUserByNameService';
 
 export class SearchUserByNameController {
   async handle(req: Request, res: Response): Promise<Response> {

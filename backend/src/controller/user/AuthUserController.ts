@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { sign } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import {prismaDB} from "../prisma";
+import {prismaDB} from "../../prisma";
 
 class AuthUserController {
   async handle(req: Request, res: Response) {

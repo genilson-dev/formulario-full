@@ -44,7 +44,7 @@
 
 
 import { Request, Response } from "express";
-import UpdateUserService from "../server/UpdateUserService";
+import UpdateUserService from "../../server/user/UpdateUserService";
 
 class UpdateUserController {
   async handle(req: Request, res: Response): Promise<Response> {
