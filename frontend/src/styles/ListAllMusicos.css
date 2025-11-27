@@ -1,0 +1,58 @@
+.musicos-container {
+  padding: 20px;
+}
+
+.musicos-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.musicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.musico-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.musico-card:hover {
+  transform: scale(1.02);
+}
+
+.musico-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.musico-info {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.card-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-btn {
+  background: #007bff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  background: #0056b3;
+}

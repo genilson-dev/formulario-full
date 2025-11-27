@@ -9,28 +9,24 @@ import EditarUsuario from "./components/EditarUsuario";
 import Sidebar from "./components/Sidebar";
 import CreateMusicForm from "./components/CreateMusicForm";
 import PrivateRoute from "./components/PrivateRouter";
-
+import ListAllMusicos from "./components/ListAllMusicos";
+import EditMusic from "./components/EditarMusico";
 function App() {
   return (
     <Router>
       <div style={{ display: "flex" }}>
-        {/* Sidebar aparece sempre que estiver logado */}
         <Sidebar />
 
         <div style={{ flex: 1, padding: "20px" }}>
           <Routes>
 
-            {/* ======================= */}
-            {/* ROTAS PÚBLICAS           */}
-            {/* ======================= */}
+            {/* ROTAS PÚBLICAS */}
             <Route path="/login" element={<LoginUser />} />
             <Route path="/" element={<LoginUser />} />
             <Route path="/recupera-senha" element={<RecuperacaoSenha />} />
             <Route path="/reset-senha" element={<ResetSenha />} />
 
-            {/* ======================= */}
-            {/* ROTAS PRIVADAS           */}
-            {/* ======================= */}
+            {/* ROTAS PRIVADAS */}
             <Route
               path="/home"
               element={
@@ -75,6 +71,24 @@ function App() {
                 </PrivateRoute>
               }
             />
+
+            <Route
+              path="/musicos"
+              element={
+                <PrivateRoute>
+                  <ListAllMusicos />
+                </PrivateRoute>
+              }
+            />
+            <Route
+  path="musicos/editar/:id"
+  element={
+    <PrivateRoute>
+      <EditMusic />
+    </PrivateRoute>
+  }
+/>
+
 
           </Routes>
         </div>

@@ -22,15 +22,15 @@ class UpdateMusicService {
       throw new Error("ID do músico é obrigatório.");
     }
 
-    // Verifica se o registro existe
     const exists = await prismaDB.musica.findUnique({ where: { id } });
+
     if (!exists) {
       throw new Error("Músico não encontrado.");
     }
 
     const data: any = {};
 
-    if (name !== undefined) data.name = name.toLocaleUpperCase();
+    if (name !== undefined) data.name = name.toUpperCase();
     if (ativo !== undefined) data.ativo = ativo;
 
     if (inicioGem !== undefined) {
@@ -38,6 +38,7 @@ class UpdateMusicService {
         typeof inicioGem === "string" ? new Date(inicioGem) : inicioGem;
     }
 
+    // STATUS
     if (status !== undefined) {
       if (Object.values(Status).includes(status as Status)) {
         data.status = status as Status;
@@ -46,6 +47,7 @@ class UpdateMusicService {
       }
     }
 
+    // FUNÇÃO
     if (funcao !== undefined) {
       if (Object.values(Funcao).includes(funcao as Funcao)) {
         data.funcao = funcao as Funcao;
@@ -54,17 +56,23 @@ class UpdateMusicService {
       }
     }
 
-    if (congregacao !== undefined) data.congregacao = congregacao.toLocaleUpperCase();
+    if (congregacao !== undefined) {
+      data.congregacao = congregacao.toUpperCase();
+    }
+
     if (batizado !== undefined) data.batizado = batizado;
 
     if (dataBatismo !== undefined) {
       data.dataBatismo =
-        typeof dataBatismo === "string" ? new Date(dataBatismo) : dataBatismo ? dataBatismo : null;
+        typeof dataBatismo === "string"
+          ? new Date(dataBatismo)
+          : dataBatismo || null;
     }
 
-    if (instrumento !== undefined) data.instrumento = instrumento.toLocaleUpperCase();
-    if (tonalidade !== undefined) data.tonalidade = tonalidade.toLocaleUpperCase();
-    if (estadoCivil !== undefined) data.estadoCivil = estadoCivil.toLocaleUpperCase();
+    // Esses campos já são ENUM no Prisma, não precisam de toUpperCase
+    if (instrumento !== undefined) data.instrumento = instrumento;
+    if (tonalidade !== undefined) data.tonalidade = tonalidade;
+    if (estadoCivil !== undefined) data.estadoCivil = estadoCivil;
 
     const musico = await prismaDB.musica.update({
       where: { id },

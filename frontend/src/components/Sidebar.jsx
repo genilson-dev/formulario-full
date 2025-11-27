@@ -20,11 +20,30 @@ function Sidebar() {
       <div className={`sidebar ${open ? "open" : ""}`}>
         <ul>
 
-          <li><Link to="/home" onClick={() => setOpen(false)}>🏠 Home</Link></li>
+          <li>
+            <Link to="/home" onClick={() => setOpen(false)}>
+              🏠 Home
+            </Link>
+          </li>
 
-          <li><Link to="/formulario" onClick={() => setOpen(false)}>📝 Formulário</Link></li>
+          <li>
+            <Link to="/formulario" onClick={() => setOpen(false)}>
+              📝 Formulário
+            </Link>
+          </li>
 
-          <li><Link to="/create-music" onClick={() => setOpen(false)}>🎵 Criar Música</Link></li>
+          <li>
+            <Link to="/create-music" onClick={() => setOpen(false)}>
+              🎵 Criar Música
+            </Link>
+          </li>
+
+          {/* NOVO ITEM — LISTAR MÚSICOS */}
+          <li>
+            <Link to="/musicos" onClick={() => setOpen(false)}>
+              🎼 Listar Músicos
+            </Link>
+          </li>
 
           {/* =========================== */}
           {/*  MENU APENAS PARA ADMIN      */}
@@ -44,11 +63,15 @@ function Sidebar() {
           {/* =========================== */}
           {/*  RECUPERAÇÃO DE SENHA       */}
           {/* =========================== */}
-          <li><Link to="/recupera-senha" onClick={() => setOpen(false)}>🔑 Recuperar Senha</Link></li>
+          <li>
+            <Link to="/recupera-senha" onClick={() => setOpen(false)}>
+              🔑 Recuperar Senha
+            </Link>
+          </li>
 
           {/* Logout */}
           <li>
-            <button 
+            <button
               className="logout-btn"
               onClick={() => {
                 localStorage.removeItem("token");

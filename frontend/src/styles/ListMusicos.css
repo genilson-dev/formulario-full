@@ -1,0 +1,109 @@
+.musicos-container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filtros input,
+.filtros select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  font-size: 15px;
+}
+
+.musicos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.musicos-table th,
+.musicos-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.musicos-table th {
+  background: #f1f1f1;
+}
+
+.status-tag {
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Cores dos status */
+.status-tag.aluno,
+.status-tag.aluna {
+  background: #007bff;
+}
+
+.status-tag.oficializado {
+  background: #28a745;
+}
+
+.status-tag.ensaios {
+  background: orange;
+}
+
+.status-tag.reunioes_jovens {
+  background: purple;
+}
+
+.status-tag.cultos_oficiais {
+  background: teal;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 2px;
+}
+
+.edit-btn {
+  background: #1e90ff;
+  color: white;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
+  }
+
+  .musicos-table th,
+  .musicos-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
